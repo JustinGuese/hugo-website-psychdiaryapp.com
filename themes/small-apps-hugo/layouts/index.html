@@ -103,6 +103,30 @@
 {{ end }}
 {{ "<!-- End of Hero Section -->" | safeHTML }}
 
+{{ "<!-- Video Demo Section -->" | safeHTML }}
+{{ if .Params.video_demo.enable }}
+{{ with .Params.video_demo }}
+<section class="section py-5">
+	<div class="container">
+		<div class="row justify-content-center">
+			<div class="col-lg-6 col-md-8">
+				<div style="position: relative; padding-bottom: 177.78%; height: 0; overflow: hidden; max-width: 100%; margin: 0 auto; border-radius: 12px; box-shadow: 0 4px 6px rgba(0,0,0,0.1);">
+					<iframe 
+						src="https://www.youtube.com/embed/{{ .video_id }}?autoplay=1&mute=1&loop=1&playlist={{ .video_id }}&controls=1&rel=0" 
+						title="App Demo Video" 
+						allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" 
+						allowfullscreen
+						style="position: absolute; top: 0; left: 0; width: 100%; height: 100%; border: 0; border-radius: 12px;">
+					</iframe>
+				</div>
+			</div>
+		</div>
+	</div>
+</section>
+{{ end }}
+{{ end }}
+{{ "<!-- End of Video Demo Section -->" | safeHTML }}
+
 {{"<!-- banner-feature -->" | safeHTML}}
 {{ if .Params.banner_feature.enable }}
 {{ with .Params.banner_feature }}

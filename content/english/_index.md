@@ -18,6 +18,11 @@ banner:
     - "100% Private"
     - "German Servers"
     
+######################## video-demo ###########################
+video_demo:
+  enable : true
+  video_id : "C0mN3jM2g5k"
+    
 ######################## banner-feature ###########################
 banner_feature:
   enable : true
