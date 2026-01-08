@@ -1,7 +1,7 @@
 ---
 title: "Contact Us"
 draft: false
-description : "Vivamus magna justo, lacinia eget consectetur sed, convallis at tellus. Vivamus magna justo, lacinia eget consectetur sed, convallis at tellus. Cras ultricies ligula sed magna dictum porta."
+description : "Any questions? Missing features? Feedback? We're here to help!"
 layout: "contact"
 
 ---

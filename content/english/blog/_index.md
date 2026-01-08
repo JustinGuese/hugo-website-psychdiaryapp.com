@@ -1,5 +1,5 @@
 ---
 title: "Blog"
 draft: false
-description : "Vivamus magna justo, lacinia eget consectetur sed, convallis at tellus. Vivamus magna justo, lacinia eget consectetur sed, convallis at tellus. Cras ultricies ligula sed magna dictum porta."
+description : "Explore evidence-based articles about mental health, AI-powered journaling, gratitude practices, mood tracking, and emotional well-being. Discover how technology and psychology combine to support your mental health journey."
 ---

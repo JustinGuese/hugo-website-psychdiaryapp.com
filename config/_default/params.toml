@@ -19,7 +19,7 @@ purge_css = true
 mainSections = ["blog"]
 
 # contact form action
-contact_form_action = "#" # contact form works with [https://airform.io/] or [https://formspree.io]
+contact_form_action = "https://formspree.io/f/mjgknjog" # contact form works with [https://airform.io/] or [https://formspree.io]
 
 # google tag manager, see https://developers.google.com/tag-manager/
 google_adsense = "" # example: ca-pub-xxxxxxxxxxxxxxxx
@@ -44,9 +44,9 @@ preloader = "" # use jpg, png, svg or gif format. example: "images/preloader.gif
 
 # contact info
 [contact_info]
-address = "9567 Turner Trace Apt. <br/> 466 North Willie, BC C3G8A4"
-email = "info@smallapps.com"
-mobile = "+211234565523"
+address = "PsychDiaryApp is a product of DataFortress.cloud GmbH, Munich, Germany"
+email = "info@psychdiaryapp.com"
+mobile = "+491601136770"
 
 # Crisp Chat
 [crisp_chat]

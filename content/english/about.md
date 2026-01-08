@@ -1,7 +1,7 @@
 ---
-title: "About Small Apps"
+title: "About PsychDiary"
 draft: false
-description : "Vivamus magna justo, lacinia eget consectetur sed, convallis at tellus. Vivamus magna justo, lacinia eget consectetur sed, convallis at tellus. Cras ultricies ligula sed magna dictum porta."
+description : "PsychDiary is an AI-powered mental health companion developed by DataFortress.cloud GmbH, a leading software company in Germany specializing in data engineering, DevOps, and AI solutions."
 layout : "about" 
 
 
@@ -9,7 +9,7 @@ layout : "about"
 our_story:
   enable: true
   title : "This is our story."
-  content : "We’re here for those who refuse to settle. Who never stop moving forwards. Who continue to search for new ideas and better experiences in everything they do. Because today’s hyper-connected world deserves a financial partner just as progressive.One that adapts to your needs, gives you control and constantly pushes you into new exciting spaces."
+  content : "PsychDiary is a revolutionary mental health diary application that combines the proven benefits of gratitude journaling with cutting-edge AI technology. Developed by DataFortress.cloud GmbH, a German software company with expertise in data engineering, DevOps (K8s, OS), and AI, PsychDiary represents our commitment to transforming personal data into meaningful insights that improve lives. We're here for those who refuse to settle, who never stop moving forward, and who continue to search for new ideas and better experiences in everything they do."
   image_slider:
     - image : "images/about/slider-1.jpg"
 
@@ -20,36 +20,36 @@ our_story:
 ############################ behind story ##############################
 behind_story:
   enable : true
-  title : "Why we created Small Apps"
-  content : "Nulla quis lorem ut libero malesuada feugiat. Vivamus magna justo, lacinia eget consectetur sed, convallis at tellus. Nulla quis lorem ut libero malesuada feugiat. Praesent sapien massa, convallis a pellentesque nec, egestas non nisi. Proin eget tortor risus. Proin eget tortor risus. Proin eget tortor risus. Nulla quis lorem ut libero malesuada feugiat. Vestibulum ac diam sit amet quam vehicula elementum sed sit amet dui. Vivamus suscipit tortor eget felis porttitor volutpat."
+  title : "Why we created PsychDiary"
+  content : "Mental health challenges affect millions worldwide, yet access to professional support remains limited, expensive, and often stigmatized. While gratitude journaling and diary-keeping have been scientifically proven to improve mental health, most people don't know where to start, struggle to maintain consistency, and can't identify patterns in their emotions. At DataFortress.cloud, we specialize in transforming data into valuable insights. We saw an opportunity to apply our expertise in AI, data engineering, and secure cloud infrastructure to create a privacy-first mental health tool that helps people understand themselves better. PsychDiary automatically analyzes your entries to identify what makes you happy and what challenges you face, providing personalized insights that help you understand your emotional patterns and improve your well-being—all while keeping your data secure in Germany, fully DSGVO compliant."
 
 ############################ about us ##############################
 about_us:
   enable : true
   about_item:
     # about item loop
-    - title : "Our Story"
+    - title : "Built by DataFortress.cloud"
       image : "images/about/story.jpg"
-      content : "Lorem ipsum dolor sit amet, consectetuer adipiscing elit. Aenean commodo ligula eget dolor. Aenean massa. Cum sociis natoque penatibus et magnis dis parturient montes, nascetur ridiculus mus. Nulla consequat massa.Donec pede justo, fringilla vel, aliquet nec, vulputate eget, arcu."
+      content : "PsychDiary is a product of DataFortress.cloud GmbH, a software company in Germany with a proven track record working with enterprises like VW, HPE, Porsche, and major banks. We specialize in data engineering, DevOps (Kubernetes, OS), and AI solutions. Our expertise in building secure, scalable, and compliant systems—from data warehousing and cloud infrastructure to AI/ML operations—enables us to create mental health technology that is both powerful and privacy-focused."
       
     # about item loop
-    - title : "What we do"
+    - title : "Privacy-First Architecture"
       image : "images/about/plan.jpg"
-      content : "Lorem ipsum dolor sit amet, consectetuer adipiscing elit. Aenean commodo ligula eget dolor. Aenean massa. Cum sociis natoque penatibus et magnis dis parturient montes, nascetur ridiculus mus. Nulla consequat massa.Donec pede justo, fringilla vel, aliquet nec, vulputate eget, arcu."
+      content : "As a German company, we take data protection seriously. PsychDiary is fully DSGVO compliant, with all data stored securely in Germany. We use pseudonymization to protect your identity, ensuring that your most personal thoughts remain private. Our secure Kubernetes hosting solutions and enterprise-grade infrastructure—the same technology we use for major corporations—ensures your data is protected by the strictest EU privacy laws. You own your data, and we're committed to complete transparency and control."
 
 ############################ quote slider ##############################
 quote_slider:
   enable : true
   slider_item : 
-    - quote : "Behind every great product, there is a great mind."
-      quote_by : "TechCrunch"
+    - quote : "PsychDiary combines the proven benefits of gratitude journaling with cutting-edge AI technology to help you understand yourself better, one entry at a time."
+      quote_by : "DataFortress.cloud GmbH"
       
-    - quote : "Behind every great product, there is a great mind."
-      quote_by : "TechCrunch"
+    - quote : "From Dusty Data to Revenue Gold—we transform data into valuable insights, whether it's enterprise data or your personal mental health journey."
+      quote_by : "DataFortress.cloud GmbH"
 
 ############################ clients slider ##############################
 clients_logo_slider: 
-  enable : true
+  enable : false
   title : "Featured In"
   logos :
    - "images/clients/business-finder.png"
@@ -59,7 +59,7 @@ clients_logo_slider:
 
 ############################ investors ##############################
 investors :
-  enable : true
+  enable : false
   title : "Our Angel Investors"
   description : "Nulla quis lorem ut libero malesuada feugiat. Vivamus magna justo, lacinia eget consectetur sed, convallis at tellus. Nulla quis lorem ut libero malesuada feugiat."
   investor :
@@ -106,13 +106,11 @@ investors :
 ############################ call to action ##############################
 call_to_action:
   enable : true
-  title : "Become a patron– join a creator's page"
-  content : "Sed porttitor lectus nibh. Vestibulum ac diam sit amet quam vehicula elementum sed sit amet dui. Pellentesque in ipsum id orci porta dapibus. Curabitur non nulla sit amet nisl tempus convallis quis ac lectus."
+  title : "Ready to start your mental health journey?"
+  content : "Join thousands of users who are using PsychDiary to understand themselves better. Start writing your first entry today and experience how AI-powered insights can help you track your emotional patterns, identify what makes you happy, and navigate life's challenges with greater self-awareness."
   button:
     enable : true
-    label : "join the team"
-    link : "#"
+    label : "Get Started"
+    link : "/contact"
 
 ---
-
-

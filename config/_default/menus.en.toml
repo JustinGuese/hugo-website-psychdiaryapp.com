@@ -31,14 +31,21 @@ weight = 5
 
 [[main]]
 parent = "About"
-name = "privacy"
-URL = "privacy/"
+name = "Privacy Policy"
+URL = "legal/privacy-policy/"
 weight = 1
 
 [[main]]
-name = "FAQ"
-URL = "faq/"
+parent = "About"
+name = "Terms & Conditions"
+URL = "legal/terms-conditions/"
 weight = 2
+
+[[main]]
+parent = "About"
+name = "Imprint"
+URL = "legal/imprint/"
+weight = 3
 
 
 # footer menu
@@ -52,7 +59,7 @@ URL = "contact/"
 
 [[footer]]
 name = "Privacy"
-URL = "privacy/"
+URL = "legal/privacy-policy/"
 
 [[footer]]
 name = "Blog"
