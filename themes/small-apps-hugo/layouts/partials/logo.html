@@ -1,0 +1,17 @@
+{{ if .Site.Params.logo }}
+  {{ $logo := resources.Get .Site.Params.logo }}
+  {{ if $logo }}
+    {{ $logoWidth := .Site.Params.logo_width | default "100px" }}
+    {{ if strings.Contains $logoWidth "px" }}
+      {{ $width := replace $logoWidth "px" "" | int }}
+      {{ $resized := $logo.Resize (printf "%dx" $width) }}
+      <img src="{{ $resized.RelPermalink }}" alt="{{ .Site.Params.logo_text | default "Logo" }}" class="img" width="{{ $width }}" height="auto">
+    {{ else }}
+      <img src="{{ $logo.RelPermalink }}" alt="{{ .Site.Params.logo_text | default "Logo" }}" class="img" style="max-width: 100px; height: auto;">
+    {{ end }}
+  {{ else }}
+    <span class="logo-text">{{ .Site.Params.logo_text | default "Logo" }}</span>
+  {{ end }}
+{{ else if .Site.Params.logo_text }}
+  <span class="logo-text">{{ .Site.Params.logo_text }}</span>
+{{ end }}

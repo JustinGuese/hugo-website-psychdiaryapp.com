@@ -1,0 +1,62 @@
+<meta charset="utf-8" />
+<title>{{ .Title | default site.Title }}</title>
+
+<!-- responsive meta -->
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=5" />
+
+<!-- theme meta -->
+<meta name="theme-name" content="small-apps-hugo" />
+
+<!-- favicon -->
+{{ partialCached "favicon" . }}
+
+
+<!-- manifest -->
+{{ partialCached "manifest" . }}
+
+
+<!-- site verifications -->
+{{ partialCached "site-verifications.html" . }}
+
+
+<!-- opengraph and twitter card -->
+{{ partial "basic-seo.html" . }}
+
+
+<!-- custom script -->
+{{ partialCached "custom-script.html" . }}
+
+
+<!-- Analytics scripts - loaded conditionally based on cookie consent -->
+{{ if site.Params.cookies.enable }}
+  <!-- Analytics will be loaded by cookie.js after consent is given -->
+  <!-- Store analytics HTML in hidden divs for later injection -->
+  <div id="analytics-scripts-container" style="display: none;" data-cookie-consent="analytics">
+    {{ template "_internal/google_analytics.html" . }}
+    {{ partialCached "gtm.html" . }}
+    {{ if site.Params.matomo.enable }}
+      {{ partialCached "matomo-analytics.html" . }}
+    {{ end }}
+    {{ if site.Params.baidu.enable }}
+      {{ partialCached "baidu-analytics.html" . }}
+    {{ end }}
+    {{ if site.Params.plausible.enable }}
+      {{ partialCached "plausible-analytics.html" . }}
+    {{ end }}
+    {{ if site.Params.counter.enable }}
+      {{ partialCached "counter-analytics.html" . }}
+    {{ end }}
+  </div>
+{{ else }}
+  <!-- Cookie consent disabled - load analytics normally -->
+  {{ template "_internal/google_analytics.html" . }}
+  {{ partialCached "gtm.html" . }}
+  {{ partialCached "matomo-analytics.html" . }}
+  {{ partialCached "baidu-analytics.html" . }}
+  {{ partialCached "plausible-analytics.html" . }}
+  {{ partialCached "counter-analytics.html" . }}
+{{ end }}
+
+
+<!-- Crisp Chat -->
+{{ partialCached "crisp-chat.html" . }}

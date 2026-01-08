@@ -1,0 +1,182 @@
+#################### default parameters ################################
+# favicon
+favicon = "images/favicon.png"
+# logo
+logo = "images/logo.png"
+logo_light = "images/logo_white.png"
+# use `px` or `x` with logo_width, example: "100px".
+# Note: logo_width is not work with .svg file
+logo_width = "100px"
+# if logo_webp set false, will not generate WEBP version of logo | default is true
+logo_webp = true
+# logo text will only show when logo is missing.
+logo_text = "PsychDiary"
+
+# purgeCSS
+purge_css = true
+
+# Main Sections
+mainSections = ["blog"]
+
+# contact form action
+contact_form_action = "#" # contact form works with [https://airform.io/] or [https://formspree.io]
+
+# google tag manager, see https://developers.google.com/tag-manager/
+google_adsense = "" # example: ca-pub-xxxxxxxxxxxxxxxx
+google_tag_manager = "" # example: G-XXXXXXXXXX
+
+# custom script on header, example: custom_script= "<script>console.log(\"Hello World\")</script>"
+custom_script = ""
+
+# copyright
+copyright = "Copyright by PsychDiaryApp.com"
+theme_copyright = true
+
+# google map
+[google_map]
+enable = true
+embed_url = "https://www.google.com/maps/embed?pb=!1m14!1m12!1m3!1d193559 60513193885!2d-74.07513185946965!3d40.709896425630156!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!5e0!3m2!1sen!2sbd!4v1677481601686!5m2!1sen!2sbd"
+
+# Preloader
+[preloader]
+enable = true 
+preloader = "" # use jpg, png, svg or gif format. example: "images/preloader.gif" 
+
+# contact info
+[contact_info]
+address = "9567 Turner Trace Apt. <br/> 466 North Willie, BC C3G8A4"
+email = "info@smallapps.com"
+mobile = "+211234565523"
+
+# Crisp Chat
+[crisp_chat]
+crisp_website_id = "9aa449e1-9999-422a-938f-8567982eec6d" # replace this code with yours
+enable = false 
+# Check this video tutorial to get your crisp website ID - https://www.youtube.com/watch?v=nW5UX6iVdFc
+
+# Valine Comment
+[valine_comment]
+appId = "" # replace this code with yours [ex: QGzwQXOqs5JOhN4RGPOkR2mR-MdYXbMMI]
+appKey = "" # replace this code with yours [ex: WBmoGyJtbqUswvfLh6L8iEBr]
+enable = false 
+# language = "change language translation from `i18n`"
+avatar = "" # see : https://valine.js.org/en/avatar.html
+enableQQ = false # https://valine.js.org/en/configuration.html#enableQQ
+highlight = true # Code highlighting
+pageSize = 10 # will show 10 comments per page
+recordIP = true # Record reviewer IP.
+visitor = true 
+# serverURLs = "" # https://leancloud.your_website.com
+# Check Valine's official documentation here - https://valine.js.org/en/configuration.html
+
+# seo meta data for OpenGraph / Twitter Card
+[metadata]
+author = "PsychDiary" 
+description = "AI-powered mental health diary app with automatic emotional analysis and 24/7 AI companion. DSGVO compliant, privacy-first, available on web, iOS, and Android." 
+image = "images/favicon.png" # this image will be used as fallback if a page has no image of its own
+keywords = ["mental health", "diary app", "AI psychologist", "gratitude journaling", "mood tracking", "emotional analysis", "mental wellness", "DSGVO compliant", "privacy-first"] 
+
+# matomo tracking: see https://matomo.org/
+[matomo]
+enable = false 
+id = "" # your matomo id
+url = "" # your matomo url
+
+# baidu analytics: see https://tongji.baidu.com/
+[baidu]
+analytics_id = "" # Your ID
+enable = false 
+
+# plausible analytics: see https://plausible.io/
+[plausible]
+domain = "" # yourdomain.com
+enable = false 
+
+# counter analytics: see https://counter.dev/setup.html
+[counter]
+enable = false 
+username = "" # your username
+
+# site verifications
+[site_verification]
+baidu = "" # Your verification code
+bing = "" # Your verification code
+facebook = "" # Your verification code
+google = "" # Your verification code
+mastodon = "" # Your verification code
+
+# cookies
+[cookies]
+enable = true
+title = "Cookie Preferences"
+content = "We use cookies to enhance your browsing experience, analyze site traffic, and personalize content. By clicking 'Accept All', you consent to our use of cookies."
+expire_days = 365
+
+# Cookie banner buttons
+accept_all_button = "Accept All"
+reject_all_button = "Reject All"
+settings_button = "Settings"
+save_preferences_button = "Save Preferences"
+cancel_button = "Cancel"
+
+# Cookie settings
+settings_title = "Cookie Preferences"
+settings_intro = "We use different types of cookies to optimize your experience on our website. You can choose which cookies you want to accept. Please note that blocking some types of cookies may impact your experience of the site."
+
+# Privacy policy link
+privacy_policy_link = "/privacy"
+privacy_policy_text = "Learn more in our Privacy Policy"
+
+# Cookie categories
+[cookies.categories.essential]
+title = "Essential Cookies"
+description = "These cookies are necessary for the website to function and cannot be switched off. They are usually only set in response to actions made by you such as setting your privacy preferences, logging in or filling in forms."
+
+[cookies.categories.analytics]
+title = "Analytics Cookies"
+description = "These cookies help us understand how visitors interact with our website by collecting and reporting information anonymously. This helps us improve the way our website works."
+
+[cookies.categories.marketing]
+title = "Marketing Cookies"
+description = "These cookies are used to make advertising messages more relevant to you and your interests. They also perform functions like preventing the same ad from continuously reappearing."
+
+[cookies.categories.functional]
+title = "Functional Cookies"
+description = "These cookies enable the website to provide enhanced functionality and personalization. They may be set by us or by third-party providers whose services we have added to our pages."
+
+# app store links
+[app_store]
+ios_url = "" # iOS App Store link - add your App Store URL here
+android_url = "" # Google Play Store link - add your Play Store URL here
+web_app_url = "https://app.psychdiaryapp.com" # Web app URL
+
+############################# social site ########################
+[[social]]
+icon = "fab fa-facebook" # fontawesome icon pack : https://fontawesome.com/icons/
+link = "#" 
+title = "facebook" 
+
+[[social]]
+icon = "fab fa-twitter" # fontawesome icon pack : https://fontawesome.com/icons/
+link = "#" 
+title = "twitter" 
+
+[[social]]
+icon = "fab fa-mastodon" # fontawesome icon pack : https://fontawesome.com/icons/
+link = "#" 
+title = "mastodon" 
+
+[[social]]
+icon = "fab fa-instagram" # fontawesome icon pack : https://fontawesome.com/icons/
+link = "#" 
+title = "instagram" 
+
+[[social]]
+icon = "fab fa-github" # fontawesome icon pack : https://fontawesome.com/icons/
+link = "#" 
+title = "github" 
+
+[[social]]
+icon = "fab fa-linkedin" # fontawesome icon pack : https://fontawesome.com/icons/
+link = "#" 
+title = "linkedin"

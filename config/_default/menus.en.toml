@@ -1,0 +1,63 @@
+################ Navigation English #################
+
+# main menu
+[[main]]
+name = "Home"
+URL = "/"
+weight = 1
+
+[[main]]
+name = "About"
+URL = "about/"
+weight = 2
+hasChildren = true
+
+[[main]]
+name = "FAQ"
+URL = "faq/"
+weight = 3
+
+[[main]]
+name = "Blog"
+URL = "blog/"
+weight = 4
+
+
+[[main]]
+name = "Contact"
+URL = "contact/"
+weight = 5
+
+
+[[main]]
+parent = "About"
+name = "privacy"
+URL = "privacy/"
+weight = 1
+
+[[main]]
+name = "FAQ"
+URL = "faq/"
+weight = 2
+
+
+# footer menu
+[[footer]]
+name = "About"
+URL = "about/"
+
+[[footer]]
+name = "Contact"
+URL = "contact/"
+
+[[footer]]
+name = "Privacy"
+URL = "privacy/"
+
+[[footer]]
+name = "Blog"
+URL = "blog/"
+
+[[footer]]
+name = "FAQ"
+URL = "faq/"

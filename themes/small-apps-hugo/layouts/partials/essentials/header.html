@@ -1,0 +1,90 @@
+<nav class="navbar main-nav navbar-expand-lg p-0">
+  <div class="container">
+    <a class="navbar-brand" href="{{ .Site.BaseURL | relLangURL }}">
+      <!-- logo -->
+      {{ partial "logo.html" }}
+    </a>
+    <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav"
+      aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+      <i class="fa-solid fa-bars"></i>
+      <i class="fa-solid fa-xmark"></i>
+    </button>
+    <div class="collapse navbar-collapse text-center" id="navbarNav">
+      <ul class="navbar-nav ms-auto">
+        {{ if not .IsHome }}
+        <li class="nav-item">
+          <a class="nav-link" href="{{ .Site.BaseURL | relLangURL }}">Home</a>
+        </li>
+        {{ end }}
+        {{ range .Site.Menus.main }}
+        {{ if .HasChildren }}
+        <li class="nav-item dropdown dropdown-slide">
+          <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-haspopup="true"
+            aria-expanded="false">
+            {{ .Name }}
+          </a>
+          <div class="dropdown-menu">
+            {{ range .Children }}
+            <a class="dropdown-item" href="{{ .URL | relLangURL }}">{{ .Name }}</a>
+            {{ end }}
+          </div>
+        </li>
+        {{ else }}
+        <li class="nav-item">
+          <a class="nav-link" href="{{ .URL | relLangURL }}">{{ .Name }}</a>
+        </li>
+        {{ end }}
+        {{ end }}
+      </ul>
+      <!-- App Store Buttons -->
+      <div class="app-store-buttons d-flex align-items-center gap-2 ms-3">
+        {{ if .Site.Params.app_store }}
+          {{ if .Site.Params.app_store.web_app_url }}
+          <a href="{{ .Site.Params.app_store.web_app_url | safeURL }}" class="btn btn-primary btn-sm" target="_blank" rel="noopener">
+            <i class="fa-solid fa-globe me-1"></i> Try It Now
+          </a>
+          {{ else }}
+          <a href="https://app.psychdiaryapp.com" class="btn btn-primary btn-sm" target="_blank" rel="noopener">
+            <i class="fa-solid fa-globe me-1"></i> Try It Now
+          </a>
+          {{ end }}
+          {{ if .Site.Params.app_store.ios_url }}
+          <a href="{{ .Site.Params.app_store.ios_url | safeURL }}" class="app-store-link" target="_blank" rel="noopener" aria-label="Download on App Store">
+            <img src="{{ "images/app/appple-store.jpg" | relURL }}" alt="Download on App Store" class="app-store-img" style="height: 40px; width: auto;">
+          </a>
+          {{ end }}
+          {{ if .Site.Params.app_store.android_url }}
+          <a href="{{ .Site.Params.app_store.android_url | safeURL }}" class="app-store-link" target="_blank" rel="noopener" aria-label="Get it on Google Play">
+            <img src="{{ "images/app/google-play.jpg" | relURL }}" alt="Get it on Google Play" class="app-store-img" style="height: 40px; width: auto;">
+          </a>
+          {{ end }}
+        {{ else }}
+          <a href="https://app.psychdiaryapp.com" class="btn btn-primary btn-sm" target="_blank" rel="noopener">
+            <i class="fa-solid fa-globe me-1"></i> Try It Now
+          </a>
+        {{ end }}
+      </div>
+      <!-- Language List -->
+      {{ if .IsTranslated }}
+      <select class="language-selector ms-3" id="select-language" onchange="location = this.value;">
+        {{ $siteLanguages := .Site.Languages}}
+        {{ $pageLang := .Page.Lang}}
+        {{ range .Page.AllTranslations }}
+        {{ $translation := .}}
+        {{ range $siteLanguages }}
+        {{ if eq $translation.Lang .Lang }}
+        {{ $selected := false }}
+        {{ if eq $pageLang .Lang}}
+        <option id="{{ $translation.Language }}" value="{{ $translation.Permalink }}" selected>{{ .LanguageName }}
+        </option>
+        {{ else }}
+        <option id="{{ $translation.Language }}" value="{{ $translation.Permalink }}">{{ .LanguageName }}</option>
+        {{ end }}
+        {{ end }}
+        {{ end }}
+        {{ end }}
+      </select>
+      {{ end }}
+    </div>
+  </div>
+</nav>

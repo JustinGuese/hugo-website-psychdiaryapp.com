@@ -1,0 +1,139 @@
+{{ if site.Params.cookies.enable }}
+<!-- Cookie Consent Banner -->
+<div id="cookieConsentBanner" class="cookie-consent-banner" style="display: none;">
+  <div class="cookie-consent-container">
+    <div class="cookie-consent-content">
+      <div class="cookie-consent-icon">
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" width="32" height="32">
+          <path d="M12 2a10 10 0 1 0 10 10 4 4 0 0 1-5-5 4 4 0 0 1-5-5"></path>
+          <path d="M8.5 8.5v.01"></path>
+          <path d="M16 15.5v.01"></path>
+          <path d="M12 12v.01"></path>
+          <path d="M11 17v.01"></path>
+          <path d="M7 14v.01"></path>
+        </svg>
+      </div>
+      <div class="cookie-consent-text">
+        <h5 class="cookie-consent-title">
+          <i class="fa-solid fa-cookie-bite"></i>
+          {{ site.Params.cookies.title | default "Cookie Preferences" }}
+        </h5>
+        <p class="cookie-consent-message">{{ site.Params.cookies.content | default "We use cookies to enhance your browsing experience, analyze site traffic, and personalize content. By clicking 'Accept All', you consent to our use of cookies." }}</p>
+      </div>
+      <div class="cookie-consent-buttons">
+        <button type="button" class="btn cookie-btn-reject" id="cookieRejectAll">
+          <i class="fa-solid fa-xmark"></i>
+          {{ site.Params.cookies.reject_all_button | default "Reject All" }}
+        </button>
+        <button type="button" class="btn cookie-btn-settings" id="cookieShowSettings">
+          <i class="fa-solid fa-sliders"></i>
+          {{ site.Params.cookies.settings_button | default "Settings" }}
+        </button>
+        <button type="button" class="btn cookie-btn-accept" id="cookieAcceptAll">
+          <i class="fa-solid fa-check"></i>
+          {{ site.Params.cookies.accept_all_button | default "Accept All" }}
+        </button>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- Cookie Settings Modal -->
+<div class="modal fade" id="cookieSettingsModal" tabindex="-1" aria-labelledby="cookieSettingsModalLabel" aria-hidden="true">
+  <div class="modal-dialog modal-dialog-centered modal-lg">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="cookieSettingsModalLabel">
+          {{ site.Params.cookies.settings_title | default "Cookie Preferences" }}
+        </h5>
+        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+      </div>
+      <div class="modal-body">
+        <p class="cookie-settings-intro">
+          {{ site.Params.cookies.settings_intro | default "We use different types of cookies to optimize your experience on our website. You can choose which cookies you want to accept. Please note that blocking some types of cookies may impact your experience of the site." }}
+        </p>
+        
+        <!-- Essential Cookies -->
+        <div class="cookie-category">
+          <div class="cookie-category-header">
+            <div class="cookie-category-info">
+              <h6 class="cookie-category-title">{{ site.Params.cookies.categories.essential.title | default "Essential Cookies" }}</h6>
+              <p class="cookie-category-description">{{ site.Params.cookies.categories.essential.description | default "These cookies are necessary for the website to function and cannot be switched off. They are usually only set in response to actions made by you such as setting your privacy preferences, logging in or filling in forms." }}</p>
+            </div>
+            <div class="cookie-category-toggle">
+              <input type="checkbox" class="cookie-toggle" id="cookieEssential" checked disabled>
+              <label for="cookieEssential" class="cookie-toggle-label">
+                <span class="cookie-toggle-switch"></span>
+              </label>
+            </div>
+          </div>
+        </div>
+
+        <!-- Analytics Cookies -->
+        <div class="cookie-category">
+          <div class="cookie-category-header">
+            <div class="cookie-category-info">
+              <h6 class="cookie-category-title">{{ site.Params.cookies.categories.analytics.title | default "Analytics Cookies" }}</h6>
+              <p class="cookie-category-description">{{ site.Params.cookies.categories.analytics.description | default "These cookies help us understand how visitors interact with our website by collecting and reporting information anonymously. This helps us improve the way our website works." }}</p>
+            </div>
+            <div class="cookie-category-toggle">
+              <input type="checkbox" class="cookie-toggle" id="cookieAnalytics">
+              <label for="cookieAnalytics" class="cookie-toggle-label">
+                <span class="cookie-toggle-switch"></span>
+              </label>
+            </div>
+          </div>
+        </div>
+
+        <!-- Marketing Cookies -->
+        <div class="cookie-category">
+          <div class="cookie-category-header">
+            <div class="cookie-category-info">
+              <h6 class="cookie-category-title">{{ site.Params.cookies.categories.marketing.title | default "Marketing Cookies" }}</h6>
+              <p class="cookie-category-description">{{ site.Params.cookies.categories.marketing.description | default "These cookies are used to make advertising messages more relevant to you and your interests. They also perform functions like preventing the same ad from continuously reappearing." }}</p>
+            </div>
+            <div class="cookie-category-toggle">
+              <input type="checkbox" class="cookie-toggle" id="cookieMarketing">
+              <label for="cookieMarketing" class="cookie-toggle-label">
+                <span class="cookie-toggle-switch"></span>
+              </label>
+            </div>
+          </div>
+        </div>
+
+        <!-- Functional Cookies -->
+        <div class="cookie-category">
+          <div class="cookie-category-header">
+            <div class="cookie-category-info">
+              <h6 class="cookie-category-title">{{ site.Params.cookies.categories.functional.title | default "Functional Cookies" }}</h6>
+              <p class="cookie-category-description">{{ site.Params.cookies.categories.functional.description | default "These cookies enable the website to provide enhanced functionality and personalization. They may be set by us or by third-party providers whose services we have added to our pages." }}</p>
+            </div>
+            <div class="cookie-category-toggle">
+              <input type="checkbox" class="cookie-toggle" id="cookieFunctional">
+              <label for="cookieFunctional" class="cookie-toggle-label">
+                <span class="cookie-toggle-switch"></span>
+              </label>
+            </div>
+          </div>
+        </div>
+
+        {{ if site.Params.cookies.privacy_policy_link }}
+        <div class="cookie-privacy-link">
+          <a href="{{ site.Params.cookies.privacy_policy_link }}" target="_blank" rel="noopener">
+            {{ site.Params.cookies.privacy_policy_text | default "Learn more in our Privacy Policy" }}
+          </a>
+        </div>
+        {{ end }}
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">
+          {{ site.Params.cookies.cancel_button | default "Cancel" }}
+        </button>
+        <button type="button" class="btn btn-primary" id="cookieSavePreferences">
+          {{ site.Params.cookies.save_preferences_button | default "Save Preferences" }}
+        </button>
+      </div>
+    </div>
+  </div>
+</div>
+{{ end }}
