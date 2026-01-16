@@ -48,16 +48,26 @@
 			</div>
 			{{ end }}
 				
-				<div class="d-flex flex-column flex-sm-row gap-3 mb-4">
+				<div class="d-flex flex-column flex-sm-row gap-3 mb-4 align-items-center">
 					{{ with .button }}
 					<a href="{{ .link | absLangURL }}" class="btn fw-bold btn-primary btn-lg px-5 py-3 shadow-lg">
 						<i class="fa-solid fa-rocket me-2"></i>{{ .label }}
 					</a>
 					{{ end }}
 					{{ with .button_secondary }}
+					{{ if or (in .link "play.google.com") (in .link "apps.apple.com") }}
+					<a href="{{ .link | absLangURL }}" class="app-store-link" target="_blank" rel="noopener" aria-label="{{ .label }}">
+						{{ if in .link "play.google.com" }}
+						<img src="{{ "images/app/google-play.jpg" | relURL }}" alt="Get it on Google Play" class="app-store-img" style="height: 60px; width: auto;">
+						{{ else if in .link "apps.apple.com" }}
+						<img src="{{ "images/app/appple-store.jpg" | relURL }}" alt="Download on App Store" class="app-store-img" style="height: 60px; width: auto;">
+						{{ end }}
+					</a>
+					{{ else }}
 					<a href="{{ .link | absLangURL }}" class="btn fw-bold btn-outline-light btn-lg px-5 py-3">
 						<i class="fa-solid fa-play-circle me-2"></i>{{ .label }}
 					</a>
+					{{ end }}
 					{{ end }}
 				</div>
 				

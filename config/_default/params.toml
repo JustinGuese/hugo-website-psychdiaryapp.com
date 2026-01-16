@@ -147,7 +147,7 @@ description = "These cookies enable the website to provide enhanced functionalit
 # app store links
 [app_store]
 ios_url = "" # iOS App Store link - add your App Store URL here
-android_url = "" # Google Play Store link - add your Play Store URL here
+android_url = "https://play.google.com/store/apps/details?id=cloud.datafortress.psychdiary&hl=en" # Google Play Store link - add your Play Store URL here
 web_app_url = "https://app.psychdiaryapp.com" # Web app URL
 
 ############################# social site ########################

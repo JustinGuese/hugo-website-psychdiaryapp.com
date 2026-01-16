@@ -11,8 +11,8 @@ banner:
     label : "Start Free"
     link : "https://app.psychdiaryapp.com"
   button_secondary:
-    label : "See How It Works"
-    link : "#features"
+    label : "Get on Android"
+    link : "https://play.google.com/store/apps/details?id=cloud.datafortress.psychdiary&hl=en"
   trust_badges:
     - "DSGVO Compliant"
     - "100% Private"
@@ -240,5 +240,5 @@ download:
       
     - label : "Get on Android"
       icon : "fa-brands fa-android"
-      link : "#"
+      link : "https://play.google.com/store/apps/details?id=cloud.datafortress.psychdiary&hl=en"
 ---
