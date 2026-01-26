@@ -5,23 +5,16 @@
 {{ with .Params.banner }}
 <section class="section gradient-banner" id="hero">
 	{{ if .background_shapes }}
-	<div class="shapes-container">
+	<div class="shapes-container" aria-hidden="true">
+		{{- /* Reduced from 16 to 8 shapes for better performance */ -}}
 		<div class="shape" data-aos="fade-down-left" data-aos-duration="1500" data-aos-delay="100"></div>
 		<div class="shape" data-aos="fade-down" data-aos-duration="1000" data-aos-delay="100"></div>
 		<div class="shape" data-aos="fade-up-right" data-aos-duration="1000" data-aos-delay="200"></div>
 		<div class="shape" data-aos="fade-up" data-aos-duration="1000" data-aos-delay="200"></div>
-		<div class="shape" data-aos="fade-down-left" data-aos-duration="1000" data-aos-delay="100"></div>
-		<div class="shape" data-aos="fade-down-left" data-aos-duration="1000" data-aos-delay="100"></div>
 		<div class="shape" data-aos="zoom-in" data-aos-duration="1000" data-aos-delay="300"></div>
 		<div class="shape" data-aos="fade-down-right" data-aos-duration="500" data-aos-delay="200"></div>
-		<div class="shape" data-aos="fade-down-right" data-aos-duration="500" data-aos-delay="100"></div>
 		<div class="shape" data-aos="zoom-out" data-aos-duration="2000" data-aos-delay="500"></div>
 		<div class="shape" data-aos="fade-up-right" data-aos-duration="500" data-aos-delay="200"></div>
-		<div class="shape" data-aos="fade-down-left" data-aos-duration="500" data-aos-delay="100"></div>
-		<div class="shape" data-aos="fade-up" data-aos-duration="500" data-aos-delay="0"></div>
-		<div class="shape" data-aos="fade-down" data-aos-duration="500" data-aos-delay="0"></div>
-		<div class="shape" data-aos="fade-up-right" data-aos-duration="500" data-aos-delay="100"></div>
-		<div class="shape" data-aos="fade-down-left" data-aos-duration="500" data-aos-delay="0"></div>
 	</div>
 	{{ end }}
 
@@ -97,7 +90,7 @@
 				<div class="hero-phone-mockup" data-aos="fade-left" data-aos-duration="1000">
 					<div class="phone-frame">
 						<div class="phone-screen">
-							{{ partial "image.html" (dict "Src" .image "Alt" "banner-image") }}
+							{{ partial "image.html" (dict "Src" .image "Alt" "banner-image" "Loading" "eager") }}
 						</div>
 					</div>
 					<!-- Floating icon elements -->
@@ -120,9 +113,10 @@
 	<div class="container">
 		<div class="row justify-content-center">
 			<div class="col-lg-6 col-md-8">
-				<div style="position: relative; padding-bottom: 177.78%; height: 0; overflow: hidden; max-width: 100%; margin: 0 auto; border-radius: 12px; box-shadow: 0 4px 6px rgba(0,0,0,0.1);">
+				<div class="video-container" style="position: relative; padding-bottom: 177.78%; height: 0; overflow: hidden; max-width: 100%; margin: 0 auto; border-radius: 12px; box-shadow: 0 4px 6px rgba(0,0,0,0.1);">
 					<iframe 
-						src="https://www.youtube.com/embed/{{ .video_id }}?autoplay=1&mute=1&loop=1&playlist={{ .video_id }}&controls=1&rel=0" 
+						loading="lazy"
+						src="https://www.youtube.com/embed/{{ .video_id }}?autoplay=0&mute=1&loop=1&playlist={{ .video_id }}&controls=1&rel=0&loading=lazy" 
 						title="App Demo Video" 
 						allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" 
 						allowfullscreen

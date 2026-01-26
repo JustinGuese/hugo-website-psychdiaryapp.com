@@ -475,12 +475,12 @@
     // Wait for banner to be in DOM
     const banner = document.getElementById('cookieConsentBanner');
     if (!banner) {
-      // Banner not found yet, wait a bit and try again (max 10 attempts = 1 second)
+      // Banner not found yet, wait a bit and try again (max 3 attempts = 300ms)
       if (typeof initializeCookieConsent.attempts === 'undefined') {
         initializeCookieConsent.attempts = 0;
       }
       initializeCookieConsent.attempts++;
-      if (initializeCookieConsent.attempts < 10) {
+      if (initializeCookieConsent.attempts < 3) {
         setTimeout(initializeCookieConsent, 100);
       } else {
         console.error('Cookie consent banner not found after multiple attempts. Make sure the cookie-consent.html partial is included in your template.');
@@ -507,32 +507,31 @@
 
   // Fallback: try again after scripts load (in case banner is added dynamically)
   window.addEventListener('load', () => {
-    setTimeout(() => {
-      const banner = document.getElementById('cookieConsentBanner');
-      if (banner) {
-        if (!banner.classList.contains('cookie-consent-visible') && CookieConsent.shouldShowBanner()) {
-          console.log('Cookie banner fallback: showing banner');
+    // Use requestIdleCallback if available for better performance
+    if (window.requestIdleCallback) {
+      requestIdleCallback(() => {
+        const banner = document.getElementById('cookieConsentBanner');
+        if (banner && !banner.classList.contains('cookie-consent-visible') && CookieConsent.shouldShowBanner()) {
           CookieConsent.showBanner();
-          CookieConsent.attachEventListeners();
+          if (!CookieConsent.initialized) {
+            CookieConsent.attachEventListeners();
+            CookieConsent.initialized = true;
+          }
         }
-      } else {
-        console.warn('Cookie banner element still not found after page load. Check that cookie-consent.html partial is included.');
-      }
-    }, 500);
-  });
-  
-  // Emergency fallback: show banner after 2 seconds if it should be shown
-  setTimeout(() => {
-    const banner = document.getElementById('cookieConsentBanner');
-    if (banner && banner.style.display === 'none' && CookieConsent.shouldShowBanner()) {
-      console.warn('Cookie banner emergency fallback: forcing banner to show');
-      CookieConsent.showBanner();
-      if (!CookieConsent.initialized) {
-        CookieConsent.attachEventListeners();
-        CookieConsent.initialized = true;
-      }
+      }, { timeout: 1000 });
+    } else {
+      setTimeout(() => {
+        const banner = document.getElementById('cookieConsentBanner');
+        if (banner && !banner.classList.contains('cookie-consent-visible') && CookieConsent.shouldShowBanner()) {
+          CookieConsent.showBanner();
+          if (!CookieConsent.initialized) {
+            CookieConsent.attachEventListeners();
+            CookieConsent.initialized = true;
+          }
+        }
+      }, 500);
     }
-  }, 2000);
+  });
 
   // Expose API globally
   window.CookieConsent = CookieConsent;

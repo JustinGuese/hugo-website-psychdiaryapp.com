@@ -47,6 +47,9 @@
       {{ partialCached "counter-analytics.html" . }}
     {{ end }}
   </div>
+  {{ if site.Params.meta_pixel.enable }}
+    {{ partialCached "essentials/meta-pixel.html" . }}
+  {{ end }}
 {{ else }}
   <!-- Cookie consent disabled - load analytics normally -->
   {{ template "_internal/google_analytics.html" . }}
@@ -55,6 +58,9 @@
   {{ partialCached "baidu-analytics.html" . }}
   {{ partialCached "plausible-analytics.html" . }}
   {{ partialCached "counter-analytics.html" . }}
+  {{ if site.Params.meta_pixel.enable }}
+    {{ partialCached "essentials/meta-pixel.html" . }}
+  {{ end }}
 {{ end }}
 
 

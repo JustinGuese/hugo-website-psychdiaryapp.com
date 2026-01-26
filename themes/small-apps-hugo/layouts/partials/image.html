@@ -1,0 +1,48 @@
+{{- $src := .Src -}}
+{{- $alt := .Alt | default "image" -}}
+{{- $class := .Class | default "" -}}
+{{- $loading := .Loading | default "lazy" -}}
+{{- $size := .Size | default "" -}}
+
+{{- if findRE "^https?://" $src -}}
+  {{- /* External image - use as-is with lazy loading */ -}}
+  <img src="{{ $src }}" alt="{{ $alt }}" class="{{ $class }}" loading="{{ $loading }}" {{ if $size }}style="max-width: {{ $size }};"{{ end }}>
+{{- else -}}
+  {{- /* Local image - optimize with Hugo */ -}}
+  {{- $image := resources.Get $src -}}
+  {{- if $image -}}
+    {{- /* Create WebP version if supported */ -}}
+    {{- $webp := "" -}}
+    {{- if or (eq $image.MediaType.SubType "png") (eq $image.MediaType.SubType "jpeg") (eq $image.MediaType.SubType "jpg") -}}
+      {{- $webp = $image | resources.ToWebP (dict "quality" 80) -}}
+    {{- end -}}
+    
+    {{- /* Resize if size specified */ -}}
+    {{- if $size -}}
+      {{- $width := replaceRE "x(\\d+)" "$1" $size | int -}}
+      {{- $resized := $image.Resize (printf "%dx" $width) -}}
+      {{- if $webp -}}
+        {{- $webpResized := $resized | resources.ToWebP (dict "quality" 80) -}}
+        <picture>
+          <source srcset="{{ $webpResized.RelPermalink }}" type="image/webp">
+          <img src="{{ $resized.RelPermalink }}" alt="{{ $alt }}" class="{{ $class }}" loading="{{ $loading }}" width="{{ $width }}" height="auto">
+        </picture>
+      {{- else -}}
+        <img src="{{ $resized.RelPermalink }}" alt="{{ $alt }}" class="{{ $class }}" loading="{{ $loading }}" width="{{ $width }}" height="auto">
+      {{- end -}}
+    {{- else -}}
+      {{- /* Full size image */ -}}
+      {{- if $webp -}}
+        <picture>
+          <source srcset="{{ $webp.RelPermalink }}" type="image/webp">
+          <img src="{{ $image.RelPermalink }}" alt="{{ $alt }}" class="{{ $class }}" loading="{{ $loading }}" width="{{ $image.Width }}" height="{{ $image.Height }}">
+        </picture>
+      {{- else -}}
+        <img src="{{ $image.RelPermalink }}" alt="{{ $alt }}" class="{{ $class }}" loading="{{ $loading }}" width="{{ $image.Width }}" height="{{ $image.Height }}">
+      {{- end -}}
+    {{- end -}}
+  {{- else -}}
+    {{- /* Fallback if image not found */ -}}
+    <img src="{{ $src | relURL }}" alt="{{ $alt }}" class="{{ $class }}" loading="{{ $loading }}" {{ if $size }}style="max-width: {{ $size }};"{{ end }}>
+  {{- end -}}
+{{- end -}}
