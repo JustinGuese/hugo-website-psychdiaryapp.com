@@ -236,7 +236,7 @@ download:
       
     - label : "Download for iOS"
       icon : "fa-brands fa-apple"
-      link : "#"
+      link : "https://apps.apple.com/us/app/psychdiary-your-ai-diary/id6755875457"
       
     - label : "Get on Android"
       icon : "fa-brands fa-android"

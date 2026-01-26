@@ -47,20 +47,33 @@
 						<i class="fa-solid fa-rocket me-2"></i>{{ .label }}
 					</a>
 					{{ end }}
-					{{ with .button_secondary }}
-					{{ if or (in .link "play.google.com") (in .link "apps.apple.com") }}
-					<a href="{{ .link | absLangURL }}" class="app-store-link" target="_blank" rel="noopener" aria-label="{{ .label }}">
-						{{ if in .link "play.google.com" }}
-						<img src="{{ "images/app/google-play.jpg" | relURL }}" alt="Get it on Google Play" class="app-store-img" style="height: 60px; width: auto;">
-						{{ else if in .link "apps.apple.com" }}
-						<img src="{{ "images/app/appple-store.jpg" | relURL }}" alt="Download on App Store" class="app-store-img" style="height: 60px; width: auto;">
+					{{ if $.Site.Params.app_store }}
+						{{ if $.Site.Params.app_store.ios_url }}
+						<a href="{{ $.Site.Params.app_store.ios_url | safeURL }}" class="app-store-link" target="_blank" rel="noopener" aria-label="Download on App Store">
+							<img src="{{ "images/app/appple-store.jpg" | relURL }}" alt="Download on App Store" class="app-store-img" style="height: 60px; width: auto;">
+						</a>
 						{{ end }}
-					</a>
+						{{ if $.Site.Params.app_store.android_url }}
+						<a href="{{ $.Site.Params.app_store.android_url | safeURL }}" class="app-store-link" target="_blank" rel="noopener" aria-label="Get it on Google Play">
+							<img src="{{ "images/app/google-play.jpg" | relURL }}" alt="Get it on Google Play" class="app-store-img" style="height: 60px; width: auto;">
+						</a>
+						{{ end }}
 					{{ else }}
-					<a href="{{ .link | absLangURL }}" class="btn fw-bold btn-outline-light btn-lg px-5 py-3">
-						<i class="fa-solid fa-play-circle me-2"></i>{{ .label }}
-					</a>
-					{{ end }}
+						{{ with .button_secondary }}
+						{{ if or (in .link "play.google.com") (in .link "apps.apple.com") }}
+						<a href="{{ .link | absLangURL }}" class="app-store-link" target="_blank" rel="noopener" aria-label="{{ .label }}">
+							{{ if in .link "play.google.com" }}
+							<img src="{{ "images/app/google-play.jpg" | relURL }}" alt="Get it on Google Play" class="app-store-img" style="height: 60px; width: auto;">
+							{{ else if in .link "apps.apple.com" }}
+							<img src="{{ "images/app/appple-store.jpg" | relURL }}" alt="Download on App Store" class="app-store-img" style="height: 60px; width: auto;">
+							{{ end }}
+						</a>
+						{{ else }}
+						<a href="{{ .link | absLangURL }}" class="btn fw-bold btn-outline-light btn-lg px-5 py-3">
+							<i class="fa-solid fa-play-circle me-2"></i>{{ .label }}
+						</a>
+						{{ end }}
+						{{ end }}
 					{{ end }}
 				</div>
 				
@@ -437,12 +450,22 @@
 			<div class="col-lg-12 text-center">
 				<h2 class="text-white mb-4">{{ .title | safeHTML | markdownify }}</h2>
 				<p class="text-white-50 mb-5 lead">{{ .subtitle | safeHTML | markdownify }}</p>
-				<div class="d-flex flex-wrap justify-content-center gap-3">
+				<div class="d-flex flex-wrap justify-content-center gap-3 align-items-center">
 					{{ range .download_buttons }}
+					{{ if or (in .link "play.google.com") (in .link "apps.apple.com") }}
+					<a href="{{ .link | safeURL }}" class="app-store-link" target="_blank" rel="noopener" aria-label="{{ .label }}">
+						{{ if in .link "play.google.com" }}
+						<img src="{{ "images/app/google-play.jpg" | relURL }}" alt="Get it on Google Play" class="app-store-img" style="height: 60px; width: auto;">
+						{{ else if in .link "apps.apple.com" }}
+						<img src="{{ "images/app/appple-store.jpg" | relURL }}" alt="Download on App Store" class="app-store-img" style="height: 60px; width: auto;">
+						{{ end }}
+					</a>
+					{{ else }}
 					<a href="{{ .link | safeURL }}" class="btn btn-white btn-lg fw-bold px-4">
 						<i class="{{ .icon }} me-2"></i>
 						{{ .label }}
 					</a>
+					{{ end }}
 					{{ end }}
 				</div>
 			</div>
