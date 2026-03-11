@@ -314,3 +314,33 @@ Die Datenschutzerklärungen von YouTube, die unter https://www.google.com/intl/e
 22. Provision of Personal Data as Statutory or Contractual Requirement; Requirement Necessary to Enter into a Contract; Obligation of the Data Subject to Provide the Personal Data; Possible Consequences of Failure to Provide Such Data
 
 We clarify that the provision of personal data is partly required by law (e.g. tax regulations) or can also result from contractual provisions (e.g. information on the contractual partner). Sometimes it may be necessary to conclude a contract that the data subject provides us with personal data, which must subsequently be processed by us. The data subject is, for example, obliged to provide us with personal data when our company signs a contract with him or her. The non-provision of the personal data would have the consequence that the contract with the data subject could not be concluded.
+
+23. AI Data Processing / Use of Google Gemini
+
+PsychDiary uses artificial intelligence powered by Google Gemini to analyze your diary entries and provide mood insights. The following information describes how your data is processed for this service:
+
+**Service Description**
+Google Gemini is an AI service that analyzes diary entry text to extract mood indicators, emotional keywords, and generate mood summaries. This service is provided by Google LLC, 1600 Amphitheatre Parkway, Mountain View, CA 94043, USA.
+
+**Data Processed**
+When you use the AI analysis feature, the following personal data is transmitted:
+- Diary entry text (content of your diary entries)
+- Sentiment and keyword data (for analysis)
+
+**Data Recipients**
+Your data is routed through DataFortress Cloud (DataFortress GmbH, Gewerbestraße 13, 82064 Straßlach-Dingharting, Germany) on GDPR-compliant German servers. The actual AI processing is performed by Google LLC in the United States. Google may have access to your data for the purpose of providing the AI service and improving their services.
+
+**Purpose**
+The purpose of this data transmission is to provide AI-powered mood analysis and insight extraction within the PsychDiary application.
+
+**Legal Basis**
+The legal basis for this processing is Article 6(1) lit. a GDPR (explicit consent). You must affirmatively consent to AI data processing before any AI analysis is performed on your diary entries. This consent is requested in-app before your first AI analysis.
+
+**Data Retention**
+Google may retain your data according to their privacy policy. For information about data retention by Google, please see https://policies.google.com/privacy.
+
+**User Control**
+You can decline AI data processing in the consent dialog when you first request AI analysis. If you decline, the app will not send your data to Google Gemini, but the diary entry will still be saved locally.
+
+**Further Information**
+For Google's privacy policy and information about how Google processes your data, please visit https://policies.google.com/privacy.
