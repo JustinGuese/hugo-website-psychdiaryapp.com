@@ -67,6 +67,20 @@ HRB 307721
 Email: info@psychdiaryapp.com
 Website: https://www.psychdiaryapp.com
 
+## Third-Party AI Services
+
+AI Service Provider and Data Processing
+This application utilizes the Google Gemini AI service, provided by Google LLC, located at 1600 Amphitheatre Parkway, Mountain View, CA 94043, USA.
+
+Data Transmission and Usage
+To provide conversational AI and chat functionality, the app transmits user-generated text prompts and inputs to Google LLC. This data is processed specifically to generate relevant responses within the chat service. The app does not share any other personal identifying information (such as email addresses or names) with the AI service unless explicitly included by the user in the text of the prompt.
+
+User Consent and Control
+Users are notified and must provide explicit consent before any data is transmitted to the third-party AI service. This permission can be managed within the app settings at any time.
+
+Data Protection Standards
+Google LLC maintains industry-standard data protection and security measures. We confirm that the third-party AI provider offers protections for user data that are equal to or exceed the standards outlined in this Privacy Policy.
+
 ## Cookies
 
 The PsychDiary websites use cookies. Cookies are text files that are stored in a computer system via an Internet browser.
