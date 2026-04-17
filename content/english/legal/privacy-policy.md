@@ -69,17 +69,29 @@ Website: https://www.psychdiaryapp.com
 
 ## Third-Party AI Services
 
-AI Service Provider and Data Processing
-This application utilizes the Google Gemini AI service, provided by Google LLC, located at 1600 Amphitheatre Parkway, Mountain View, CA 94043, USA.
+**AI Service Providers**
+This application uses two third-party AI services:
 
-Data Transmission and Usage
-To provide conversational AI and chat functionality, the app transmits user-generated text prompts and inputs to Google LLC. This data is processed specifically to generate relevant responses within the chat service. The app does not share any other personal identifying information (such as email addresses or names) with the AI service unless explicitly included by the user in the text of the prompt.
+- **Google Gemini**, provided by Google LLC, 1600 Amphitheatre Parkway, Mountain View, CA 94043, USA — used for text processing (diary analysis, chat replies, reminder generation).
+- **fal.ai Whisper**, provided by fal.ai, Inc., USA — used for voice-to-text transcription only.
 
-User Consent and Control
-Users are notified and must provide explicit consent before any data is transmitted to the third-party AI service. This permission can be managed within the app settings at any time.
+All AI requests are routed through DataFortress Cloud (DataFortress GmbH, Gewerbestraße 13, 82064 Straßlach-Dingharting, Germany) on GDPR-compliant German servers before reaching either AI provider.
 
-Data Protection Standards
-Google LLC maintains industry-standard data protection and security measures. We confirm that the third-party AI provider offers protections for user data that are equal to or exceed the standards outlined in this Privacy Policy.
+**Data Transmission and Usage**
+The app transmits the following user-generated data to the respective AI service via DataFortress Cloud:
+
+- **Diary entries (text → Google Gemini)** — analyzed to extract mood sentiment, emotional keywords, and summaries.
+- **Chat messages (text → Google Gemini)** — processed to generate conversational AI replies in the chat tab.
+- **Personalized reminder seeds (text → Google Gemini)** — if you enable "Personalized reminders" in Profile, a snippet of your most recent diary entry is used to generate personalized reminder notifications.
+- **Voice recordings (audio → fal.ai Whisper)** — when you tap the microphone in the diary entry form or chat composer, the recorded audio is uploaded for transcription to text. Audio is not stored after transcription.
+
+The app does not share any other personal identifying information (such as email addresses or names) with the AI services unless you explicitly include it in the text or voice you submit. Data is used solely to provide the feature you requested and to generate the response or analysis returned to you.
+
+**User Consent and Control**
+Before any of the data flows above occur, you are shown an in-app consent dialog that names Google Gemini, fal.ai Whisper, and DataFortress Cloud, lists the data categories sent, and links to this Privacy Policy. No user text or voice is transmitted until you explicitly grant consent. You can withdraw consent at any time via your device settings (data deletion) or by uninstalling the app; you can also disable "Personalized reminders" independently in Profile, and the microphone icons in diary and chat will not function until consent is granted.
+
+**Data Protection Standards**
+Google LLC, fal.ai, Inc., and DataFortress GmbH maintain industry-standard data protection and security measures. We have confirmed that these third parties offer protections for user data that are equal to or exceed the standards outlined in this Privacy Policy.
 
 ## Cookies
 
@@ -329,32 +341,45 @@ Die Datenschutzerklärungen von YouTube, die unter https://www.google.com/intl/e
 
 We clarify that the provision of personal data is partly required by law (e.g. tax regulations) or can also result from contractual provisions (e.g. information on the contractual partner). Sometimes it may be necessary to conclude a contract that the data subject provides us with personal data, which must subsequently be processed by us. The data subject is, for example, obliged to provide us with personal data when our company signs a contract with him or her. The non-provision of the personal data would have the consequence that the contract with the data subject could not be concluded.
 
-23. AI Data Processing / Use of Google Gemini
+23. AI Data Processing / Use of Google Gemini and fal.ai
 
-PsychDiary uses artificial intelligence powered by Google Gemini to analyze your diary entries and provide mood insights. The following information describes how your data is processed for this service:
+PsychDiary uses artificial intelligence to support four features: diary mood analysis, conversational AI chat, personalized reminders, and voice-to-text transcription. Text features are powered by Google Gemini; voice transcription is powered by fal.ai Whisper. The following information describes how your data is processed for these services.
 
-**Service Description**
-Google Gemini is an AI service that analyzes diary entry text to extract mood indicators, emotional keywords, and generate mood summaries. This service is provided by Google LLC, 1600 Amphitheatre Parkway, Mountain View, CA 94043, USA.
+**Service Description — Google Gemini (text)**
+Google Gemini is an AI service that processes user-provided text to (1) extract mood sentiment and emotional keywords from diary entries and generate summaries, (2) generate conversational replies in the chat tab, and (3) generate personalized reminder copy based on a snippet of your most recent diary entry when you opt in to "Personalized reminders". This service is provided by Google LLC, 1600 Amphitheatre Parkway, Mountain View, CA 94043, USA.
+
+**Service Description — fal.ai Whisper (voice)**
+fal.ai Whisper is an AI transcription service that processes user-recorded audio to convert speech to text. It is invoked when you tap the microphone icon in the diary entry form or chat composer. This service is provided by fal.ai, Inc., USA. Audio is transmitted solely for transcription and is not retained after the transcription is returned to the app.
 
 **Data Processed**
-When you use the AI analysis feature, the following personal data is transmitted:
-- Diary entry text (content of your diary entries)
-- Sentiment and keyword data (for analysis)
+When you use the AI features, the following personal data is transmitted:
+- Diary entry text (content of your diary entries) — when AI analysis is requested for an entry. **Recipient: Google Gemini.**
+- Chat messages — every message you send in the chat tab. **Recipient: Google Gemini.**
+- Personalized reminder seeds — a snippet of your most recent diary entry, only if you enable "Personalized reminders" in Profile. **Recipient: Google Gemini.**
+- Derived sentiment and keyword data used by the AI pipeline. **Recipient: Google Gemini.**
+- Voice recordings — AAC-LC audio (mobile) or WebM audio (web) captured when you use the microphone button. **Recipient: fal.ai Whisper.**
 
 **Data Recipients**
-Your data is routed through DataFortress Cloud (DataFortress GmbH, Gewerbestraße 13, 82064 Straßlach-Dingharting, Germany) on GDPR-compliant German servers. The actual AI processing is performed by Google LLC in the United States. Google may have access to your data for the purpose of providing the AI service and improving their services.
+Your data is routed through DataFortress Cloud (DataFortress GmbH, Gewerbestraße 13, 82064 Straßlach-Dingharting, Germany) on GDPR-compliant German servers. The actual AI processing is performed in the United States: Google LLC processes text, and fal.ai, Inc. processes voice recordings. These providers may have access to your data solely for the purpose of providing the respective AI service.
 
 **Purpose**
-The purpose of this data transmission is to provide AI-powered mood analysis and insight extraction within the PsychDiary application.
+The purpose of this data transmission is to provide AI-powered diary mood analysis, conversational chat replies, personalized reminder content, and voice-to-text transcription within the PsychDiary application.
 
 **Legal Basis**
-The legal basis for this processing is Article 6(1) lit. a GDPR (explicit consent). You must affirmatively consent to AI data processing before any AI analysis is performed on your diary entries. This consent is requested in-app before your first AI analysis.
+The legal basis for this processing is Article 6(1) lit. a GDPR (explicit consent). You must affirmatively consent to AI data processing before any text or voice leaves the app for any of the four features above. Consent is requested in-app via a single upfront dialog shown after your first login that names Google Gemini, fal.ai Whisper, and DataFortress Cloud and lists the data categories transmitted.
 
 **Data Retention**
-Google may retain your data according to their privacy policy. For information about data retention by Google, please see https://policies.google.com/privacy.
+Google may retain your data according to their privacy policy; see https://policies.google.com/privacy. fal.ai does not retain your audio after the transcription is completed; see https://fal.ai/privacy for the provider's policy.
 
 **User Control**
-You can decline AI data processing in the consent dialog when you first request AI analysis. If you decline, the app will not send your data to Google Gemini, but the diary entry will still be saved locally.
+You can decline AI data processing in the consent dialog. If you decline:
+- No diary entry text, chat message, reminder seed, or voice recording will be sent to any AI service.
+- The chat feature will show a prompt asking for consent each time you try to send a message; messages are not delivered until you grant consent.
+- The microphone icons in the diary entry form and chat composer will display an "Enable voice input" prompt; voice recording will not start until consent is granted.
+- Diary entries will still be saved locally, but without AI analysis.
+- Personalized reminders will fall back to generic non-personalized copy.
+
+You can also separately toggle "Personalized reminders" on and off in Profile at any time without affecting the other AI features.
 
 **Further Information**
-For Google's privacy policy and information about how Google processes your data, please visit https://policies.google.com/privacy.
+For Google's privacy policy see https://policies.google.com/privacy. For fal.ai's privacy policy see https://fal.ai/privacy.
