@@ -143,3 +143,123 @@
     }
   }
 }
+
+// ── Screenshots Gallery ────────────────────────────────────────────────────
+.screenshot-phone-wrap {
+  max-width: 160px;
+  margin: 0 auto;
+
+  img, picture img {
+    display: block;
+    width: 100%;
+    height: auto;
+    max-height: 300px;
+    object-fit: cover;
+    object-position: top;
+    border-radius: 20px;
+    box-shadow: 0 12px 35px rgba(0, 0, 0, 0.14);
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+  }
+
+  &:hover img,
+  &:hover picture img {
+    transform: translateY(-8px);
+    box-shadow: 0 20px 50px rgba(0, 0, 0, 0.2);
+  }
+}
+
+// ── Feature section phone images ──────────────────────────────────────────
+.feature-phone-img {
+  display: flex;
+  justify-content: center;
+
+  img, picture img {
+    max-height: 480px;
+    max-width: 260px;
+    width: auto;
+    height: auto;
+    border-radius: 28px;
+    box-shadow: 0 24px 64px rgba(0, 0, 0, 0.14);
+  }
+}
+
+// ── General modernization ─────────────────────────────────────────────────
+
+// Softer section backgrounds
+.bg-gray {
+  background: #f5f6fa !important;
+}
+
+// Card-like feature items
+.service-item {
+  background: #ffffff;
+  border-radius: 16px;
+  padding: 24px 16px !important;
+  margin: 12px 0 !important;
+  box-shadow: 0 2px 16px rgba(102, 126, 234, 0.08);
+  transition: box-shadow 0.25s ease, transform 0.25s ease;
+
+  &:hover {
+    box-shadow: 0 8px 30px rgba(102, 126, 234, 0.16);
+    transform: translateY(-3px);
+  }
+
+  i {
+    font-size: 28px !important;
+    background: linear-gradient(135deg, #667eea, #764ba2);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+  }
+}
+
+// Tighten section vertical padding
+.section {
+  padding: 70px 0 !important;
+}
+
+// Nicer FAQ accordion
+.accordion-item {
+  border: none !important;
+  border-radius: 12px !important;
+  margin-bottom: 10px;
+  box-shadow: 0 2px 12px rgba(0, 0, 0, 0.06);
+  overflow: hidden;
+}
+.accordion-button {
+  font-weight: 600;
+  border-radius: 12px !important;
+
+  &:not(.collapsed) {
+    background: linear-gradient(135deg, #667eea22, #764ba211);
+    color: #667eea;
+    box-shadow: none;
+  }
+}
+
+// Statistics cards
+.statistics-section .bg-light {
+  background: #ffffff !important;
+  border: 1px solid rgba(102, 126, 234, 0.12);
+  border-radius: 16px !important;
+  transition: transform 0.25s ease;
+
+  &:hover {
+    transform: translateY(-4px);
+  }
+}
+
+// Problem / solution section spacing
+.problem_solution ul li {
+  padding: 8px 0;
+}
+
+// Banner feature icons
+.banner-feature .section .rounded {
+  border-radius: 20px !important;
+  box-shadow: 0 4px 30px rgba(0, 0, 0, 0.07) !important;
+}
+
+// Download CTA section
+.call-to-action-app {
+  background: linear-gradient(135deg, #667eea 0%, #764ba2 100%) !important;
+}

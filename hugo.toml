@@ -69,3 +69,7 @@ link = "plugins/cookie/cookie.js"
 link = "plugins/lazy-loader.js"
 [[params.plugins.js]]
 link = "plugins/swiper/swiper.js"
+
+[params.app_store]
+  ios_url = "https://apps.apple.com/us/app/psychdiary-your-ai-diary/id6755875457"
+  android_url = "https://play.google.com/store/apps/details?id=cloud.datafortress.psychdiary"

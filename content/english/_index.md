@@ -8,11 +8,11 @@ banner:
   content : "Write naturally about your day. Our AI automatically analyzes your emotions, identifies what makes you happy, and provides personalized insights—24/7. No therapy waiting lists. No expensive sessions."
   image : "images/appscreenshots/diaryentry.png"
   button:
-    label : "Start Free"
-    link : "https://app.psychdiaryapp.com"
+    label : "Try Free"
+    link : "https://psychdiaryapp.com/"
   button_secondary:
-    label : "Get on Android"
-    link : "https://play.google.com/store/apps/details?id=cloud.datafortress.psychdiary&hl=en"
+    label : "Download for iOS"
+    link : "https://apps.apple.com/us/app/psychdiary-your-ai-diary/id6755875457"
   trust_badges:
     - "DSGVO Compliant"
     - "100% Private"
@@ -230,15 +230,15 @@ download:
   title : "Ready to Understand Yourself Better?"
   subtitle : "No credit card required • Free to start • 2 minute setup <br>Start improving your mental health today"
   download_buttons :
-    - label : "Try Web App Free"
-      icon : "fa-solid fa-globe"
-      link : "https://app.psychdiaryapp.com"
-      
     - label : "Download for iOS"
       icon : "fa-brands fa-apple"
       link : "https://apps.apple.com/us/app/psychdiary-your-ai-diary/id6755875457"
       
     - label : "Get on Android"
       icon : "fa-brands fa-android"
-      link : "https://play.google.com/store/apps/details?id=cloud.datafortress.psychdiary&hl=en"
+      link : "https://play.google.com/store/apps/details?id=cloud.datafortress.psychdiary"
+      
+    - label : "Try Web App Free"
+      icon : "fa-solid fa-globe"
+      link : "https://psychdiaryapp.com/"
 ---
