@@ -32,7 +32,7 @@
   <!-- Analytics will be loaded by cookie.js after consent is given -->
   <!-- Store analytics HTML in hidden divs for later injection -->
   <div id="analytics-scripts-container" style="display: none;" data-cookie-consent="analytics">
-    {{ template "_internal/google_analytics.html" . }}
+    {{ partial "essentials/google-analytics.html" . }}
     {{ partialCached "gtm.html" . }}
     {{ if site.Params.matomo.enable }}
       {{ partialCached "matomo-analytics.html" . }}
@@ -52,7 +52,7 @@
   {{ end }}
 {{ else }}
   <!-- Cookie consent disabled - load analytics normally -->
-  {{ template "_internal/google_analytics.html" . }}
+  {{ partial "essentials/google-analytics.html" . }}
   {{ partialCached "gtm.html" . }}
   {{ partialCached "matomo-analytics.html" . }}
   {{ partialCached "baidu-analytics.html" . }}

@@ -2,6 +2,7 @@
 
 // Import cookie banner styles
 @import 'cookie-banner.scss';
+@import 'app-install-banner.scss';
 
 // Language selector styling to match navigation
 .language-selector {
@@ -25,6 +26,16 @@
     color: $dark;
     padding: 10px;
   }
+}
+
+// Nav Try button - make it smaller
+.btn-nav-try {
+  padding: 4px 10px !important;
+  font-size: 11px !important;
+  text-transform: uppercase !important;
+  font-weight: 700 !important;
+  border-radius: 4px !important;
+  white-space: nowrap !important;
 }
 
 // Fix download section buttons - ensure they have dark text on white background

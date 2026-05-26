@@ -1,0 +1,76 @@
+{{ if site.Params.app_store }}
+<div id="app-install-banner" class="banner-hidden">
+  <button class="banner-close" onclick="closeAppBanner()" aria-label="Close banner">&times;</button>
+  {{ $favicon := resources.Get site.Params.favicon }}
+  {{ if $favicon }}
+  <img src="{{ $favicon.RelPermalink }}" alt="PsychDiary App Icon" class="app-icon">
+  {{ else }}
+  <img src="{{ site.Params.favicon | absURL }}" alt="PsychDiary App Icon" class="app-icon">
+  {{ end }}
+  <div class="app-info">
+    <span class="app-title">PsychDiary</span>
+    <span class="app-subtitle">AI Mental Health Companion</span>
+  </div>
+  <a id="app-banner-link" href="#" class="app-install-btn">Install</a>
+</div>
+
+<script>
+  function closeAppBanner() {
+    const banner = document.getElementById('app-install-banner');
+    banner.classList.add('banner-hidden');
+    document.body.classList.remove('has-app-banner');
+    // Save preference for 7 days
+    const date = new Date();
+    date.setTime(date.getTime() + (7 * 24 * 60 * 60 * 1000));
+    document.cookie = "hideAppBanner=true; expires=" + date.toUTCString() + "; path=/";
+  }
+
+  function initAppBanner() {
+    // Check if user already closed it
+    if (document.cookie.indexOf('hideAppBanner=true') !== -1) {
+      return;
+    }
+
+    // Only show on mobile
+    if (window.innerWidth >= 992) {
+      return;
+    }
+
+    const banner = document.getElementById('app-install-banner');
+    const link = document.getElementById('app-banner-link');
+    
+    const userAgent = navigator.userAgent || navigator.vendor || window.opera;
+    let appUrl = "";
+
+    if (/android/i.test(userAgent)) {
+      appUrl = "{{ site.Params.app_store.android_url }}";
+    } else if (/iPad|iPhone|iPod/.test(userAgent) && !window.MSStream) {
+      // For iOS, the native meta tag is preferred, 
+      // but we can show this as a fallback or if they scrolled past the native one.
+      // Apple's native banner is better for iOS Safari.
+      // If we want to hide our custom banner on iOS to avoid double banners:
+      return; 
+    } else {
+      // Not mobile or other OS
+      return;
+    }
+
+    if (appUrl) {
+      link.href = appUrl;
+      banner.style.display = 'flex';
+      // Small delay to allow CSS transition
+      setTimeout(() => {
+        banner.classList.remove('banner-hidden');
+        document.body.classList.add('has-app-banner');
+      }, 100);
+    }
+  }
+
+  // Initialize on load
+  if (document.readyState === 'complete') {
+    initAppBanner();
+  } else {
+    window.addEventListener('load', initAppBanner);
+  }
+</script>
+{{ end }}

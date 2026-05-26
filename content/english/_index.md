@@ -9,7 +9,7 @@ banner:
   image : "images/appscreenshots/diaryentry.png"
   button:
     label : "Try Free"
-    link : "https://psychdiaryapp.com/"
+    link : "https://app.psychdiaryapp.com"
   button_secondary:
     label : "Download for iOS"
     link : "https://apps.apple.com/us/app/psychdiary-your-ai-diary/id6755875457"
@@ -240,5 +240,5 @@ download:
       
     - label : "Try Web App Free"
       icon : "fa-solid fa-globe"
-      link : "https://psychdiaryapp.com/"
+      link : "https://app.psychdiaryapp.com"
 ---

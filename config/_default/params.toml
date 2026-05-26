@@ -100,7 +100,7 @@ username = "" # your username
 # Meta Pixel (Facebook Pixel): see https://www.facebook.com/business/help/952192354843755
 [meta_pixel]
 enable = true
-pixel_id = "767318649280169" # Your Meta Pixel ID
+pixel_id = "1010501788064600" # Your Meta Pixel ID
 
 # site verifications
 [site_verification]

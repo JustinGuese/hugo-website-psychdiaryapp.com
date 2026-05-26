@@ -40,11 +40,11 @@
       <div class="app-store-buttons d-flex align-items-center gap-2 ms-3">
         {{ if .Site.Params.app_store }}
           {{ if .Site.Params.app_store.web_app_url }}
-          <a href="{{ .Site.Params.app_store.web_app_url | safeURL }}" class="btn btn-primary btn-sm" target="_blank" rel="noopener">
+          <a href="{{ .Site.Params.app_store.web_app_url | safeURL }}" class="btn btn-primary btn-sm btn-nav-try" target="_blank" rel="noopener">
             <i class="fa-solid fa-globe me-1"></i> Try It Now
           </a>
           {{ else }}
-          <a href="https://app.psychdiaryapp.com" class="btn btn-primary btn-sm" target="_blank" rel="noopener">
+          <a href="https://app.psychdiaryapp.com" class="btn btn-primary btn-sm btn-nav-try" target="_blank" rel="noopener">
             <i class="fa-solid fa-globe me-1"></i> Try It Now
           </a>
           {{ end }}
@@ -59,7 +59,7 @@
           </a>
           {{ end }}
         {{ else }}
-          <a href="https://app.psychdiaryapp.com" class="btn btn-primary btn-sm" target="_blank" rel="noopener">
+          <a href="https://app.psychdiaryapp.com" class="btn btn-primary btn-sm btn-nav-try" target="_blank" rel="noopener">
             <i class="fa-solid fa-globe me-1"></i> Try It Now
           </a>
         {{ end }}

@@ -1,0 +1,75 @@
+<script>
+(function() {
+  'use strict';
+
+  // Function to track events safely
+  function trackEvent(gaEventName, gaParams, fbEventName) {
+    // Track GA4 event
+    if (typeof gtag === 'function') {
+      gtag('event', gaEventName, gaParams);
+    }
+    
+    // Track Meta Pixel event
+    if (typeof fbq === 'function') {
+      fbq('track', fbEventName);
+    }
+  }
+
+  // Initialize event listeners
+  function initTracking() {
+    // 1. App Install Buttons (App Store links, Banner, Header buttons)
+    const appSelectors = [
+      '.app-store-link',      // Hero and Header App Store/Google Play images
+      '.app-install-btn',     // App Install Banner button
+      '.app-store-buttons a'  // Header "Try It Now" button
+    ];
+    
+    document.querySelectorAll(appSelectors.join(',')).forEach(function(btn) {
+      btn.addEventListener('click', function() {
+        const label = btn.getAttribute('aria-label') || btn.innerText || 'App Install';
+        trackEvent('app_install_click', {
+          'event_category': 'Engagement',
+          'event_label': label,
+          'button_text': btn.innerText.trim()
+        }, 'Contact'); // Using 'Contact' for App Install as Meta standard event or custom
+      });
+    });
+
+    // 2. Contact Form Submission
+    // Target forms in the contact section
+    const contactForms = document.querySelectorAll('.contact-form form');
+    contactForms.forEach(function(form) {
+      form.addEventListener('submit', function() {
+        trackEvent('contact_form_submit', {
+          'event_category': 'Contact',
+          'event_label': 'Contact Page Form'
+        }, 'Contact');
+      });
+    });
+
+    // 3. Any other explicit Contact buttons (e.g. in footer or elsewhere)
+    document.querySelectorAll('a, button').forEach(function(el) {
+      const text = (el.innerText || '').toLowerCase();
+      if (text.includes('contact') && !el.closest('.contact-form')) {
+        el.addEventListener('click', function() {
+          trackEvent('contact_click', {
+            'event_category': 'Engagement',
+            'event_label': el.innerText.trim()
+          }, 'Contact');
+        });
+      }
+    });
+  }
+
+  // Attach listeners when DOM is ready
+  if (document.readyState === 'loading') {
+    document.addEventListener('DOMContentLoaded', initTracking);
+  } else {
+    initTracking();
+  }
+
+  // Also listen for cookie consent changes to re-init if needed
+  window.addEventListener('cookieConsentAnalyticsAllowed', initTracking);
+  window.addEventListener('cookieConsentMarketingAllowed', initTracking);
+})();
+</script>
