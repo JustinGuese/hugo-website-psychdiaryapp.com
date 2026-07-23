@@ -12,6 +12,22 @@
           <a href="{{ .Site.BaseURL | absLangURL }}">
             {{ partial "image.html" (dict "Src" .Site.Params.logo_light "Alt" "small apps") }}
           </a>
+          {{ if .Site.Params.app_store }}
+          <div class="footer-app-badges d-flex flex-wrap align-items-center justify-content-center gap-2 my-4">
+            {{ if .Site.Params.app_store.ios_url }}
+            <a href="{{ .Site.Params.app_store.ios_url | safeURL }}" class="app-store-link track-app-click" target="_blank" rel="noopener" aria-label="Download on App Store">
+              {{ $b := resources.Get "images/badges/app-store-badge.svg" }}
+              <img src="{{ $b.RelPermalink }}" alt="Download on App Store" class="app-store-img" style="height: 40px; width: auto;">
+            </a>
+            {{ end }}
+            {{ if .Site.Params.app_store.android_url }}
+            <a href="{{ .Site.Params.app_store.android_url | safeURL }}" class="app-store-link track-app-click" target="_blank" rel="noopener" aria-label="Get it on Google Play">
+              {{ $b := resources.Get "images/badges/google-play-badge.svg" }}
+              <img src="{{ $b.RelPermalink }}" alt="Get it on Google Play" class="app-store-img" style="height: 40px; width: auto;">
+            </a>
+            {{ end }}
+          </div>
+          {{ end }}
           <ul class="social-icon list-inline">
             {{ range .Site.Params.social }}
             <li class="list-inline-item">

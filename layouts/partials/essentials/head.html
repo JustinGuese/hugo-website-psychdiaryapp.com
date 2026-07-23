@@ -15,6 +15,15 @@
 {{ partialCached "manifest" . }}
 
 
+<!-- iOS native smart app banner (Android/mobile fallback handled by app-install-banner.html) -->
+{{ with site.Params.app_store.ios_url }}
+{{ $appID := replaceRE `.*/id(\d+).*` "$1" . }}
+{{ if ne $appID . }}
+<meta name="apple-itunes-app" content="app-id={{ $appID }}">
+{{ end }}
+{{ end }}
+
+
 <!-- site verifications -->
 {{ partialCached "site-verifications.html" . }}
 

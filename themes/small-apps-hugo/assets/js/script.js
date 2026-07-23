@@ -140,6 +140,26 @@
     AOS.init({
       once: true
     });
+
+    // -----------------------------
+    //  App/Web Store Click Tracking
+    // -----------------------------
+    var appButtons = document.querySelectorAll(".track-app-click");
+    appButtons.forEach(function (btn) {
+      btn.addEventListener("click", function () {
+        if (typeof gtag === "function") {
+          gtag("event", "select_content", {
+            content_type: "button",
+            item_id: "app_go"
+          });
+        }
+        if (typeof fbq === "function") {
+          fbq("track", "FindLocation", {
+            content_name: "App Redirect"
+          });
+        }
+      });
+    });
   });
 
 })();

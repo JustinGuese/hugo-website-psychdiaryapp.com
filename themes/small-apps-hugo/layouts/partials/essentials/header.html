@@ -40,22 +40,24 @@
       <div class="app-store-buttons d-flex align-items-center gap-2 ms-3">
         {{ if .Site.Params.app_store }}
           {{ if .Site.Params.app_store.web_app_url }}
-          <a href="{{ .Site.Params.app_store.web_app_url | safeURL }}" class="btn btn-primary btn-sm btn-nav-try" target="_blank" rel="noopener">
+          <a href="{{ .Site.Params.app_store.web_app_url | safeURL }}" class="btn btn-primary btn-sm btn-nav-try track-app-click" target="_blank" rel="noopener">
             <i class="fa-solid fa-globe me-1"></i> Try It Now
           </a>
           {{ else }}
-          <a href="https://app.psychdiaryapp.com" class="btn btn-primary btn-sm btn-nav-try" target="_blank" rel="noopener">
+          <a href="https://app.psychdiaryapp.com" class="btn btn-primary btn-sm btn-nav-try track-app-click" target="_blank" rel="noopener">
             <i class="fa-solid fa-globe me-1"></i> Try It Now
           </a>
           {{ end }}
           {{ if .Site.Params.app_store.ios_url }}
-          <a href="{{ .Site.Params.app_store.ios_url | safeURL }}" class="app-store-link" target="_blank" rel="noopener" aria-label="Download on App Store">
-            <img src="{{ "images/app/appple-store.jpg" | relURL }}" alt="Download on App Store" class="app-store-img" style="height: 40px; width: auto;">
+          <a href="{{ .Site.Params.app_store.ios_url | safeURL }}" class="app-store-link track-app-click" target="_blank" rel="noopener" aria-label="Download on App Store">
+            {{ $b := resources.Get "images/badges/app-store-badge.svg" }}
+            <img src="{{ $b.RelPermalink }}" alt="Download on App Store" class="app-store-img" style="height: 40px; width: auto;">
           </a>
           {{ end }}
           {{ if .Site.Params.app_store.android_url }}
-          <a href="{{ .Site.Params.app_store.android_url | safeURL }}" class="app-store-link" target="_blank" rel="noopener" aria-label="Get it on Google Play">
-            <img src="{{ "images/app/google-play.jpg" | relURL }}" alt="Get it on Google Play" class="app-store-img" style="height: 40px; width: auto;">
+          <a href="{{ .Site.Params.app_store.android_url | safeURL }}" class="app-store-link track-app-click" target="_blank" rel="noopener" aria-label="Get it on Google Play">
+            {{ $b := resources.Get "images/badges/google-play-badge.svg" }}
+            <img src="{{ $b.RelPermalink }}" alt="Get it on Google Play" class="app-store-img" style="height: 40px; width: auto;">
           </a>
           {{ end }}
         {{ else }}

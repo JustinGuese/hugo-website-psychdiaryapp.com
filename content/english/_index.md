@@ -224,21 +224,5 @@ faq:
     - question : "How does the AI remember my journey?"
       answer : "Our AI uses a sophisticated multi-layered memory system: short-term memory for recent conversations, long-term memory with automatic summarization, permanent fact memory that never forgets important details, and diary memory that can search through all your entries semantically."
 
-############################### download ###################################
-download:
-  enable : true
-  title : "Ready to Understand Yourself Better?"
-  subtitle : "No credit card required • Free to start • 2 minute setup <br>Start improving your mental health today"
-  download_buttons :
-    - label : "Download for iOS"
-      icon : "fa-brands fa-apple"
-      link : "https://apps.apple.com/us/app/psychdiary-your-ai-diary/id6755875457"
-      
-    - label : "Get on Android"
-      icon : "fa-brands fa-android"
-      link : "https://play.google.com/store/apps/details?id=cloud.datafortress.psychdiary"
-      
-    - label : "Try Web App Free"
-      icon : "fa-solid fa-globe"
-      link : "https://app.psychdiaryapp.com"
 ---
+

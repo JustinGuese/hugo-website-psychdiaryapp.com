@@ -15,3 +15,8 @@ Swiper.js (v8.0.7) — Carousels/sliders (testimonials, about page)
 AOS (Animate On Scroll) — Scroll animations (data-aos attributes)
 Font Awesome 6 — Icons (fa-solid, fa-rocket, etc.)
 So the template is built on Bootstrap 5.3.0 as the primary framework, with Swiper, AOS, and Font Awesome for additional functionality.
+
+## Tracking & Analytics
+
+- **Google Analytics ID**: `G-J9FEGQ5FZX`
+- **Meta Pixel ID**: `1010501788064600`
