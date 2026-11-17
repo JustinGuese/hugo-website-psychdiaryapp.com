@@ -1,7 +1,7 @@
 ############################# Default configuration ########################
-baseURL = "/"
+baseURL = "https://psychdiaryapp.com/"
 theme = "small-apps-hugo"
-title = "PsychDiaryApp.com | AI-powered mental health diary app with automatic emotional analysis and 24/7 AI companion. DSGVO compliant, privacy-first, available on web, iOS, and Android."
+title = "PsychDiary | AI Mental Health Journal & 24/7 Companion"
 # Default time zone for time stamps; use any valid tz database name: https://en.wikipedia.org/wiki/List_of_tz_database_time_zones#List
 timeZone = "America/New_York"
 # post pagination

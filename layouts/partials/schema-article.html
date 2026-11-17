@@ -1,0 +1,33 @@
+{{ $headline := .Title | plainify }}
+{{ $description := (.Params.description | default .Summary) | plainify }}
+{{ $datePublished := "" }}
+{{ if not .PublishDate.IsZero }}
+  {{ $datePublished = .PublishDate.Format "2006-01-02T15:04:05Z07:00" }}
+{{ else if not .Date.IsZero }}
+  {{ $datePublished = .Date.Format "2006-01-02T15:04:05Z07:00" }}
+{{ else }}
+  {{ $datePublished = now.Format "2006-01-02T15:04:05Z07:00" }}
+{{ end }}
+{{ $dateModified := "" }}
+{{ if not .Lastmod.IsZero }}
+  {{ $dateModified = .Lastmod.Format "2006-01-02T15:04:05Z07:00" }}
+{{ else }}
+  {{ $dateModified = $datePublished }}
+{{ end }}
+{{ $image := "https://psychdiaryapp.com/images/logo.png" }}
+{{ with .Params.image }}
+  {{ $image = . | absURL }}
+{{ end }}
+
+{{ $author := dict "@type" "Organization" "name" "PsychDiary Team" "url" "https://psychdiaryapp.com" }}
+{{ $publisher := dict "@type" "Organization" "name" "PsychDiary" "logo" (dict "@type" "ImageObject" "url" "https://psychdiaryapp.com/images/logo.png") }}
+
+{{ $blogPosting := dict "@type" "BlogPosting" "@id" (printf "%s#article" .Permalink) "mainEntityOfPage" .Permalink "headline" $headline "description" $description "image" $image "datePublished" $datePublished "dateModified" $dateModified "author" $author "publisher" $publisher }}
+
+{{ $breadcrumbs := dict "@type" "BreadcrumbList" "@id" (printf "%s#breadcrumb" .Permalink) "itemListElement" (slice (dict "@type" "ListItem" "position" 1 "name" "Home" "item" "https://psychdiaryapp.com/") (dict "@type" "ListItem" "position" 2 "name" "Blog" "item" "https://psychdiaryapp.com/blog/") (dict "@type" "ListItem" "position" 3 "name" $headline "item" .Permalink)) }}
+
+{{ $schema := dict "@context" "https://schema.org" "@graph" (slice $blogPosting $breadcrumbs) }}
+
+<script type="application/ld+json">
+{{ $schema | jsonify (dict "indent" "  ") | safeJS }}
+</script>

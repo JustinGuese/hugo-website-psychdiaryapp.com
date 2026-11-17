@@ -12,6 +12,13 @@
 	{{ else }}
 	{{ partial "essentials/style.html" . }}
 	{{ end }}
+
+	<!-- Structured Data Schema -->
+	{{ if .IsHome }}
+	{{ partial "schema-home.html" . }}
+	{{ else if and (eq .Section "blog") (not .IsSection) }}
+	{{ partial "schema-article.html" . }}
+	{{ end }}
 </head>
 
 <body>
