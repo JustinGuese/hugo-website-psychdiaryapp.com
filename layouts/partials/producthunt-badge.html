@@ -1,0 +1,9 @@
+{{- /* Product Hunt badge. Usage: {{ partial "producthunt-badge.html" (dict "height" 54 "loc" "hero") }} */ -}}
+{{- $url := site.Params.producthunt_url -}}
+{{- if $url }}
+{{- $b := resources.Get "images/badges/producthunt-badge.svg" -}}
+{{- $h := .height | default 54 -}}
+<a href="{{ $url }}?utm_source=psychdiaryapp.com&utm_medium={{ .loc | default "site" }}" class="producthunt-badge" target="_blank" rel="noopener" aria-label="PsychDiary on Product Hunt" data-ph-loc="{{ .loc }}">
+  <img src="{{ $b.RelPermalink }}" alt="PsychDiary on Product Hunt" width="{{ div (mul $h 250) 54 }}" height="{{ $h }}" style="height: {{ $h }}px; width: auto;" loading="lazy">
+</a>
+{{- end }}

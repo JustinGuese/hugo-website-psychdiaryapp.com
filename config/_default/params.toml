@@ -1,4 +1,6 @@
 #################### default parameters ################################
+# Product Hunt launch page (public post URL, not the maker-invite link)
+producthunt_url = "https://www.producthunt.com/posts/psychdiary"
 # favicon
 favicon = "images/favicon.png"
 # logo
