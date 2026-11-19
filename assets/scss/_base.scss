@@ -1,0 +1,107 @@
+// Base styles and utilities for Dusk Journal theme
+
+// Global reduced motion guard
+@media (prefers-reduced-motion: reduce) {
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.01ms;
+    animation-iteration-count: 1;
+    transition-duration: 0.01ms;
+    scroll-behavior: auto;
+  }
+}
+
+// Body defaults
+body {
+  background-color: var(--paper);
+  color: var(--text);
+  font-family: var(--font-sans);
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+// Headings typography using secondary font (Fraunces display serif)
+h1, h2, h3, h4, h5, h6,
+.h1, .h2, .h3, .h4, .h5, .h6 {
+  font-family: var(--font-serif);
+  color: var(--ink);
+  font-weight: 600;
+  letter-spacing: -0.015em;
+}
+
+p {
+  color: var(--text);
+}
+
+// Section spacing
+.section {
+  padding: 96px 0;
+
+  @include mobile {
+    padding: 64px 0;
+  }
+
+  &-sm {
+    padding: 48px 0;
+
+    @include mobile {
+      padding: 32px 0;
+    }
+  }
+}
+
+// Primary CTA button in amber accent
+.btn-accent {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+  background: var(--accent);
+  color: var(--accent-ink);
+  border: 1px solid var(--accent);
+  border-radius: var(--radius);
+  font-family: var(--font-sans);
+  font-weight: 600;
+  text-decoration: none;
+  box-shadow: 0 4px 14px rgba(245, 185, 122, 0.35);
+  transition: transform 0.2s ease, box-shadow 0.2s ease, background 0.2s ease;
+
+  &:hover,
+  &:focus {
+    background: darken(#F5B97A, 6%);
+    color: var(--accent-ink);
+    border-color: darken(#F5B97A, 6%);
+    transform: translateY(-2px);
+    box-shadow: 0 6px 20px rgba(245, 185, 122, 0.45);
+  }
+
+  &:active {
+    transform: translateY(0);
+    box-shadow: 0 2px 8px rgba(245, 185, 122, 0.3);
+  }
+
+  i,
+  svg {
+    color: var(--accent-ink);
+  }
+}
+
+// Glass card surfaces with backdrop blur
+.glass-card {
+  background: var(--glass);
+  backdrop-filter: blur(16px);
+  -webkit-backdrop-filter: blur(16px);
+  border: 1px solid rgba(255, 255, 255, 0.12);
+  border-radius: var(--radius);
+  box-shadow: var(--shadow-soft);
+}
+
+.glass-card-light {
+  background: rgba(255, 255, 255, 0.8);
+  backdrop-filter: blur(16px);
+  -webkit-backdrop-filter: blur(16px);
+  border: 1px solid rgba(20, 18, 43, 0.08);
+  border-radius: var(--radius);
+  box-shadow: var(--shadow-soft);
+}

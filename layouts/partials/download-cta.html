@@ -1,26 +1,27 @@
 {{ if site.Params.download.enable }}
 {{ with site.Params.download }}
-<section class="call-to-action-app section bg-blue">
-	<div class="container">
+<section class="call-to-action-app section section-download-cta">
+	<div class="download-cta-glow" aria-hidden="true"></div>
+	<div class="container position-relative">
 		<div class="row">
 			<div class="col-lg-12 text-center">
-				<h2 class="text-white mb-4">{{ .title | safeHTML | markdownify }}</h2>
-				<p class="text-white-50 mb-5 lead">{{ .subtitle | safeHTML | markdownify }}</p>
+				<h2 class="download-cta-title text-white mb-4">{{ .title | safeHTML | markdownify }}</h2>
+				<p class="download-cta-lead mb-5 lead">{{ .subtitle | safeHTML | markdownify }}</p>
 				<div class="d-flex flex-wrap justify-content-center gap-3 align-items-center">
 					{{ range .download_buttons }}
 					{{ if or (in .link "play.google.com") (in .link "apps.apple.com") }}
 					<a href="{{ .link | safeURL }}" class="app-store-link track-app-click" target="_blank" rel="noopener" aria-label="{{ .label }}">
 						{{ if in .link "play.google.com" }}
 						{{ $b := resources.Get "images/badges/google-play-badge.svg" }}
-						<img src="{{ $b.RelPermalink }}" alt="Get it on Google Play" class="app-store-img" style="height: 60px; width: auto;">
+						<img src="{{ $b.RelPermalink }}" alt="Get it on Google Play" class="app-store-img download-badge-img">
 						{{ else if in .link "apps.apple.com" }}
 						{{ $b := resources.Get "images/badges/app-store-badge.svg" }}
-						<img src="{{ $b.RelPermalink }}" alt="Download on App Store" class="app-store-img" style="height: 60px; width: auto;">
+						<img src="{{ $b.RelPermalink }}" alt="Download on App Store" class="app-store-img download-badge-img">
 						{{ end }}
 					</a>
 					{{ else }}
-					<a href="{{ .link | safeURL }}" class="btn btn-white btn-lg fw-bold px-4 track-app-click">
-						<i class="{{ .icon }} me-2"></i>
+					<a href="{{ .link | safeURL }}" class="btn btn-accent btn-lg fw-bold px-5 py-3 track-app-click">
+						<i class="{{ .icon }} me-2" aria-hidden="true"></i>
 						{{ .label }}
 					</a>
 					{{ end }}
