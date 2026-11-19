@@ -1,86 +1,49 @@
 {{ define "main" }}
-<style>
-/* Screenshot gallery – small phone thumbs */
-.ss-wrap { max-width: 140px; margin: 0 auto; }
-.ss-wrap img, .ss-wrap picture img {
-  width: 100% !important; height: auto !important;
-  max-height: 260px !important; object-fit: cover !important; object-position: top !important;
-  border-radius: 18px !important; box-shadow: 0 10px 28px rgba(0,0,0,.13) !important;
-  transition: transform .3s !important;
-}
-.ss-wrap:hover img, .ss-wrap:hover picture img { transform: translateY(-6px) !important; }
-/* Feature section phone images */
-.feat-phone img, .feat-phone picture img {
-  max-height: 460px !important; max-width: 240px !important;
-  width: auto !important; height: auto !important;
-  border-radius: 26px !important; box-shadow: 0 20px 50px rgba(0,0,0,.13) !important;
-}
-/* Service section phone image */
-.svc-phone img, .svc-phone picture img {
-  max-height: 460px !important; max-width: 240px !important;
-  width: auto !important; height: auto !important;
-  border-radius: 26px !important; box-shadow: 0 20px 50px rgba(0,0,0,.12) !important;
-}
-</style>
 
 {{ "<!-- Hero Section -->" | safeHTML }}
 {{ if .Params.banner.enable }}
 {{ with .Params.banner }}
-<section class="section gradient-banner" id="hero">
-	{{ if .background_shapes }}
-	<div class="shapes-container" aria-hidden="true">
-		{{- /* Reduced from 16 to 8 shapes for better performance */ -}}
-		<div class="shape" data-aos="fade-down-left" data-aos-duration="1500" data-aos-delay="100"></div>
-		<div class="shape" data-aos="fade-down" data-aos-duration="1000" data-aos-delay="100"></div>
-		<div class="shape" data-aos="fade-up-right" data-aos-duration="1000" data-aos-delay="200"></div>
-		<div class="shape" data-aos="fade-up" data-aos-duration="1000" data-aos-delay="200"></div>
-		<div class="shape" data-aos="zoom-in" data-aos-duration="1000" data-aos-delay="300"></div>
-		<div class="shape" data-aos="fade-down-right" data-aos-duration="500" data-aos-delay="200"></div>
-		<div class="shape" data-aos="zoom-out" data-aos-duration="2000" data-aos-delay="500"></div>
-		<div class="shape" data-aos="fade-up-right" data-aos-duration="500" data-aos-delay="200"></div>
-	</div>
-	{{ end }}
-
+<section class="section gradient-banner hero-section" id="hero">
 	<div class="container">
 		<div class="row gy-5 align-items-center">
-			<div class="col-lg-6 order-2 order-lg-1 text-center text-lg-start">
+			<div class="col-lg-6 text-center text-lg-start">
 			{{ if .subtitle }}
-			<div class="hero-badge mb-3">
-				<span class="badge hero-subtitle-badge px-4 py-2 rounded-pill">
-					<i class="fa-solid fa-sparkles me-2"></i>{{ .subtitle | safeHTML | markdownify }}
+			<div class="mb-3">
+				<span class="hero-subtitle-pill">
+					<i class="fa-solid fa-sparkles me-2" aria-hidden="true"></i>{{ .subtitle | safeHTML | markdownify }}
 				</span>
 			</div>
 			{{ end }}
-			<h1 class="text-white fw-bold mb-4 display-3 lh-sm">{{ .title | safeHTML | markdownify }}</h1>
-			<p class="text-white mb-4 lead fs-5">{{ .content | safeHTML | markdownify }}</p>
+			<h1 class="hero-title">{{ .title | safeHTML | markdownify }}</h1>
+			<p class="hero-lead">{{ .content | safeHTML | markdownify }}</p>
 			
 			{{ if .trust_badges }}
-			<div class="mb-4 d-flex flex-wrap gap-2">
+			<div class="hero-trust-badges">
 				{{ range .trust_badges }}
-				<span class="badge trust-badge px-3 py-2 rounded-pill">
-					<i class="fa-solid fa-check-circle me-1"></i>{{ . }}
+				<span class="trust-pill trust-badge">
+					<i class="fa-solid fa-check-circle me-1" aria-hidden="true"></i>{{ . }}
 				</span>
 				{{ end }}
 			</div>
 			{{ end }}
 				
-				<div class="d-flex flex-column flex-sm-row gap-3 mb-4 align-items-center">
+				<div class="hero-cta-group">
 					{{ with .button }}
-					<a href="{{ .link | absLangURL }}" class="btn fw-bold btn-primary btn-lg px-5 py-3 shadow-lg">
-						<i class="fa-solid fa-rocket me-2"></i>{{ .label }}
+					<a href="{{ .link | absLangURL }}" class="btn fw-bold btn-accent btn-lg px-5 py-3 shadow-lg track-app-click">
+						<i class="fa-solid fa-rocket me-2" aria-hidden="true"></i>{{ .label }}
 					</a>
 					{{ end }}
 					{{ if $.Site.Params.app_store }}
 						{{ if $.Site.Params.app_store.ios_url }}
 						<a href="{{ $.Site.Params.app_store.ios_url | safeURL }}" class="app-store-link track-app-click" target="_blank" rel="noopener" aria-label="Download on App Store">
 							{{ $b := resources.Get "images/badges/app-store-badge.svg" }}
-							<img src="{{ $b.RelPermalink }}" alt="Download on App Store" class="app-store-img" style="height: 60px; width: auto;">
+							<img src="{{ $b.RelPermalink }}" alt="Download on App Store" class="app-store-img" style="height: 52px; width: auto;">
 						</a>
 						{{ end }}
 						{{ if $.Site.Params.app_store.android_url }}
 						<a href="{{ $.Site.Params.app_store.android_url | safeURL }}" class="app-store-link track-app-click" target="_blank" rel="noopener" aria-label="Get it on Google Play">
 							{{ $b := resources.Get "images/badges/google-play-badge.svg" }}
-							<img src="{{ $b.RelPermalink }}" alt="Get it on Google Play" class="app-store-img" style="height: 60px; width: auto;">
+							<img src="{{ $b.RelPermalink }}" alt="Get it on Google Play" class="app-store-img" style="height: 52px; width: auto;">
 						</a>
 						{{ end }}
 					{{ else }}
@@ -89,58 +52,142 @@
 						<a href="{{ .link | absLangURL }}" class="app-store-link track-app-click" target="_blank" rel="noopener" aria-label="{{ .label }}">
 							{{ if in .link "play.google.com" }}
 							{{ $b := resources.Get "images/badges/google-play-badge.svg" }}
-							<img src="{{ $b.RelPermalink }}" alt="Get it on Google Play" class="app-store-img" style="height: 60px; width: auto;">
+							<img src="{{ $b.RelPermalink }}" alt="Get it on Google Play" class="app-store-img" style="height: 52px; width: auto;">
 							{{ else if in .link "apps.apple.com" }}
 							{{ $b := resources.Get "images/badges/app-store-badge.svg" }}
-							<img src="{{ $b.RelPermalink }}" alt="Download on App Store" class="app-store-img" style="height: 60px; width: auto;">
+							<img src="{{ $b.RelPermalink }}" alt="Download on App Store" class="app-store-img" style="height: 52px; width: auto;">
 							{{ end }}
 						</a>
 						{{ else }}
 						<a href="{{ .link | absLangURL }}" class="btn fw-bold btn-outline-light btn-lg px-5 py-3">
-							<i class="fa-solid fa-play-circle me-2"></i>{{ .label }}
+							<i class="fa-solid fa-play-circle me-2" aria-hidden="true"></i>{{ .label }}
 						</a>
 						{{ end }}
 						{{ end }}
 					{{ end }}
 				</div>
 				
-				<div class="hero-stats d-flex gap-4 text-white">
-					<div>
-						<div class="fs-2 fw-bold">24/7</div>
-						<div class="small text-white-50">AI Support</div>
+				<div class="mb-4 text-center text-lg-start">
+					{{ partial "producthunt-badge.html" (dict "height" 54 "loc" "hero") }}
+				</div>
+
+				<div class="hero-stats">
+					<div class="hero-stat-item">
+						<div class="stat-value">24/7</div>
+						<div class="stat-label">AI Support</div>
 					</div>
-					<div>
-						<div class="fs-2 fw-bold">100%</div>
-						<div class="small text-white-50">Private</div>
+					<div class="hero-stat-item">
+						<div class="stat-value">100%</div>
+						<div class="stat-label">Private</div>
 					</div>
-					<div>
-						<div class="fs-2 fw-bold">Free</div>
-						<div class="small text-white-50">To Start</div>
+					<div class="hero-stat-item">
+						<div class="stat-value">Free</div>
+						<div class="stat-label">To Start</div>
 					</div>
 				</div>
 			</div>
-			<div class="col-lg-6 text-center order-1 order-lg-2 position-relative">
-				<!-- Decorative background elements -->
-				<div class="hero-decorative-elements">
-					<div class="decorative-circle decorative-circle-1"></div>
-					<div class="decorative-circle decorative-circle-2"></div>
-					<div class="decorative-circle decorative-circle-3"></div>
-				</div>
-				
-				<div class="hero-phone-mockup" data-aos="fade-left" data-aos-duration="1000">
-					<div class="phone-frame">
-						<div class="phone-screen">
-							{{ partial "image.html" (dict "Src" .image "Alt" "banner-image" "Loading" "eager") }}
+			<div class="col-lg-6 text-center position-relative">
+				<div class="hero-phones-stage" id="heroPhonesStage">
+					<!-- Ambient slow glow behind phones -->
+					<div class="hero-phone-glow" aria-hidden="true"></div>
+
+					<!-- Left Background Phone (chat screen) -->
+					<div class="hero-phone-side hero-phone-left" aria-hidden="true">
+						<div class="clean-phone-bezel">
+							<div class="phone-notch"></div>
+							<div class="phone-screen">
+								{{ partial "image.html" (dict "Src" "images/appscreenshots/chatscreen.png" "Alt" "AI Chat Companion" "Loading" "eager") }}
+							</div>
 						</div>
 					</div>
-					<!-- Floating icon elements -->
-					<div class="floating-icon floating-icon-1">
-						<i class="fa-solid fa-sparkles"></i>
+
+					<!-- Main Center Phone (diary entry) -->
+					<div class="hero-phone-main">
+						<div class="clean-phone-bezel phone-bezel-main">
+							<div class="phone-notch"></div>
+							<div class="phone-screen">
+								{{ partial "image.html" (dict "Src" .image "Alt" "PsychDiary Journal Screen" "Loading" "eager") }}
+							</div>
+						</div>
+					</div>
+
+					<!-- Right Background Phone (profile screen) -->
+					<div class="hero-phone-side hero-phone-right" aria-hidden="true">
+						<div class="clean-phone-bezel">
+							<div class="phone-notch"></div>
+							<div class="phone-screen">
+								{{ partial "image.html" (dict "Src" "images/appscreenshots/profile.png" "Alt" "PsychDiary Mood Trends" "Loading" "eager") }}
+							</div>
+						</div>
+					</div>
+
+					<!-- Floating Glass Insight Chip 1 -->
+					<div class="hero-insight-chip hero-insight-chip-1" aria-hidden="true">
+						<div class="insight-chip-inner">
+							<div class="insight-chip-icon">
+								<i class="fa-solid fa-sparkles" aria-hidden="true"></i>
+							</div>
+							<div class="insight-chip-content">
+								<span class="insight-chip-label">Mood Trend</span>
+								<span class="insight-chip-val">+18% Calmness</span>
+							</div>
+						</div>
+					</div>
+
+					<!-- Floating Glass Insight Chip 2 -->
+					<div class="hero-insight-chip hero-insight-chip-2" aria-hidden="true">
+						<div class="insight-chip-inner">
+							<div class="insight-chip-icon">
+								<i class="fa-solid fa-moon" aria-hidden="true"></i>
+							</div>
+							<div class="insight-chip-content">
+								<span class="insight-chip-label">Night Reflection</span>
+								<span class="insight-chip-val">Better Sleep</span>
+							</div>
+						</div>
 					</div>
 				</div>
 			</div>
 		</div>
 	</div>
+
+	<script>
+	(function() {
+		if (typeof window === 'undefined') return;
+		if (window.matchMedia && window.matchMedia('(prefers-reduced-motion: reduce)').matches) return;
+		var hero = document.getElementById('hero');
+		var stage = document.getElementById('heroPhonesStage');
+		if (!hero || !stage) return;
+
+		var ticking = false;
+		var mouseX = 0, mouseY = 0;
+
+		function update() {
+			stage.style.setProperty('--mx', mouseX.toFixed(4));
+			stage.style.setProperty('--my', mouseY.toFixed(4));
+			ticking = false;
+		}
+
+		hero.addEventListener('mousemove', function(e) {
+			var rect = hero.getBoundingClientRect();
+			mouseX = ((e.clientX - rect.left) / rect.width) - 0.5;
+			mouseY = ((e.clientY - rect.top) / rect.height) - 0.5;
+			if (!ticking) {
+				window.requestAnimationFrame(update);
+				ticking = true;
+			}
+		}, { passive: true });
+
+		hero.addEventListener('mouseleave', function() {
+			mouseX = 0;
+			mouseY = 0;
+			if (!ticking) {
+				window.requestAnimationFrame(update);
+				ticking = true;
+			}
+		});
+	})();
+	</script>
 </section>
 {{ end }}
 {{ end }}
@@ -149,24 +196,51 @@
 {{ "<!-- Video Demo Section -->" | safeHTML }}
 {{ if .Params.video_demo.enable }}
 {{ with .Params.video_demo }}
-<section class="section py-5">
+<section class="section section-video py-5" id="video-demo">
 	<div class="container">
 		<div class="row justify-content-center">
-			<div class="col-lg-6 col-md-8">
-				<div class="video-container" style="position: relative; padding-bottom: 177.78%; height: 0; overflow: hidden; max-width: 100%; margin: 0 auto; border-radius: 12px; box-shadow: 0 4px 6px rgba(0,0,0,0.1);">
-					<iframe 
-						loading="lazy"
-						src="https://www.youtube.com/embed/{{ .video_id }}?autoplay=0&mute=1&loop=1&playlist={{ .video_id }}&controls=1&rel=0&loading=lazy" 
-						title="App Demo Video" 
-						allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" 
-						allowfullscreen
-						style="position: absolute; top: 0; left: 0; width: 100%; height: 100%; border: 0; border-radius: 12px;">
-					</iframe>
+			<div class="col-lg-6 col-md-8 text-center">
+				<div class="video-facade-wrapper">
+					<div class="video-facade" id="videoFacade" data-video-id="{{ .video_id }}" role="button" tabindex="0" aria-label="Play App Demo Video">
+						<img src="https://i.ytimg.com/vi/{{ .video_id }}/hqdefault.jpg" alt="PsychDiary App Demo Video Preview" loading="lazy" class="video-facade-thumb">
+						<div class="video-facade-overlay"></div>
+						<div class="video-play-btn" aria-hidden="true">
+							<i class="fa-solid fa-play"></i>
+						</div>
+					</div>
 				</div>
 			</div>
 		</div>
 	</div>
 </section>
+<script>
+(function() {
+	var facade = document.getElementById('videoFacade');
+	if (!facade) return;
+	function loadVideo() {
+		var vid = facade.getAttribute('data-video-id');
+		if (!vid) return;
+		var iframe = document.createElement('iframe');
+		iframe.setAttribute('src', 'https://www.youtube.com/embed/' + encodeURIComponent(vid) + '?autoplay=1&mute=1&loop=1&playlist=' + encodeURIComponent(vid) + '&controls=1&rel=0');
+		iframe.setAttribute('title', 'PsychDiary App Demo');
+		iframe.setAttribute('allow', 'accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture');
+		iframe.setAttribute('allowfullscreen', 'true');
+		iframe.className = 'video-iframe';
+		facade.innerHTML = '';
+		facade.appendChild(iframe);
+		facade.classList.add('is-playing');
+		facade.removeAttribute('role');
+		facade.removeAttribute('tabindex');
+	}
+	facade.addEventListener('click', loadVideo);
+	facade.addEventListener('keydown', function(e) {
+		if (e.key === 'Enter' || e.key === ' ') {
+			e.preventDefault();
+			loadVideo();
+		}
+	});
+})();
+</script>
 {{ end }}
 {{ end }}
 {{ "<!-- End of Video Demo Section -->" | safeHTML }}
@@ -174,15 +248,19 @@
 {{"<!-- banner-feature -->" | safeHTML}}
 {{ if .Params.banner_feature.enable }}
 {{ with .Params.banner_feature }}
-<section class="section pt-0 position-relative pull-top">
+<section class="section section-banner-feature pt-0 position-relative">
 	<div class="container">
-		<div class="rounded shadow p-5 bg-white">
-			<div class="row justify-content-center">
+		<div class="banner-feature-card">
+			<div class="row g-4 justify-content-center">
 				{{ range .feature_item }}
-				<div class="col-md-4 mb-4 mb-md-0 text-center">
-					<i class="{{ .icon }} text-primary fs-1 mb-3"></i>
-					<h2 class="mt-3 text-capitalize h5 fw-bold">{{.title }}</h2>
-					<p class="regular text-muted">{{.content | markdownify }}</p>
+				<div class="col-md-4 text-center">
+					<div class="banner-feature-item">
+						<div class="banner-feature-icon">
+							<i class="{{ .icon }}" aria-hidden="true"></i>
+						</div>
+						<h2 class="banner-feature-title">{{ .title }}</h2>
+						<p class="banner-feature-desc">{{ .content | markdownify }}</p>
+					</div>
 				</div>
 				{{ end }}
 			</div>
@@ -196,29 +274,46 @@
 {{ "<!-- Problem-Solution Section -->" | safeHTML }}
 {{ if .Params.problem_solution.enable }}
 {{ with .Params.problem_solution }}
-<section class="section bg-light">
+<section class="section section-problem-solution">
 	<div class="container">
 		<div class="row">
 			<div class="col-lg-12 text-center mb-5">
 				<h2 class="mb-3">{{ .title | safeHTML | markdownify }}</h2>
 			</div>
 		</div>
-		<div class="row">
+		<div class="row g-4 align-items-stretch">
 			<div class="col-lg-6 mb-4 mb-lg-0">
-				<h3 class="h4 text-danger mb-4">{{ .problem_title }}</h3>
-				<ul class="list-unstyled">
-					{{ range .problem_items }}
-					<li class="mb-3">
-						<i class="fa-solid fa-times-circle text-danger me-2"></i>
-						{{ . | markdownify }}
-					</li>
-					{{ end }}
-				</ul>
+				<div class="problem-card">
+					<div class="problem-card-badge">
+						<i class="fa-solid fa-arrow-down-long me-2" aria-hidden="true"></i>Traditional Challenges
+					</div>
+					<h3 class="problem-card-title">{{ .problem_title }}</h3>
+					<ul class="problem-list list-unstyled mb-0">
+						{{ range .problem_items }}
+						<li class="problem-item">
+							<span class="problem-item-icon" aria-hidden="true">
+								<i class="fa-solid fa-xmark"></i>
+							</span>
+							<span class="problem-item-text">{{ . | markdownify }}</span>
+						</li>
+						{{ end }}
+					</ul>
+				</div>
 			</div>
 			<div class="col-lg-6">
-				<h3 class="h4 text-success mb-4">{{ .solution_title }}</h3>
-				<p class="lead">{{ .solution_content | markdownify }}</p>
-				<a href="#features" class="btn btn-primary mt-3">See How It Works</a>
+				<div class="solution-card">
+					<div class="solution-card-badge">
+						<i class="fa-solid fa-sparkles me-2" aria-hidden="true"></i>The PsychDiary Solution
+					</div>
+					<h3 class="solution-card-title">{{ .solution_title }}</h3>
+					<p class="solution-card-lead">{{ .solution_content | markdownify }}</p>
+					<div class="solution-card-action">
+						<a href="#features" class="btn btn-accent btn-lg px-4 fw-bold">
+							<span>See How It Works</span>
+							<i class="fa-solid fa-arrow-right ms-2" aria-hidden="true"></i>
+						</a>
+					</div>
+				</div>
 			</div>
 		</div>
 	</div>
@@ -232,27 +327,33 @@
 {{ range $i,$p:= .Params.feature.feature_item }}
 <section class="feature section {{if eq $i 0}}pt-0{{end}} hide-overflow" {{if eq $i 0}}id="features"{{end}}>
 	<div class="container">
-		<div class="row justify-content-between align-items-center">
-			<div class="col-lg-6 {{if not (modBool $i 2)}}order-lg-2{{end}}">
-				<div class="image-content feat-phone text-center" data-aos="fade-{{if not (modBool $i 2)}}left{{else}}right{{end}}">
-					{{ partial "image.html" (dict "Src" .image "Alt" "feature image") }}
+		<div class="row justify-content-between align-items-center gy-5">
+			<div class="col-lg-5 {{if not (modBool $i 2)}}order-lg-2{{end}} text-center">
+				<div class="feat-phone-stage" data-aos="fade-{{if not (modBool $i 2)}}left{{else}}right{{end}}">
+					<div class="tinted-blob tinted-blob-{{if modBool $i 2}}calm{{else}}accent{{end}}" aria-hidden="true"></div>
+					<div class="feat-phone-frame">
+						<div class="phone-notch" aria-hidden="true"></div>
+						<div class="feat-phone">
+							{{ partial "image.html" (dict "Src" .image "Alt" .title) }}
+						</div>
+					</div>
 				</div>
 			</div>
 			<div class="col-lg-6 {{if not (modBool $i 2)}}order-lg-1{{end}}">
 				<div class="feature-content">
-					<h2 class="mb-4">{{ .title }}</h2>
-					<p class="desc lead">{{ .content }}</p>
+					<h2 class="feature-title mb-4">{{ .title }}</h2>
+					<p class="feature-desc lead mb-4">{{ .content }}</p>
 				</div>
 				{{ if .quote.enable }}
 				{{ with .quote }}
-				<div class="testimonial mt-4 p-4 bg-light rounded">
-					<p class="mb-3 fst-italic">"{{ .comment }}"</p>
-					<ul class="list-inline meta mb-0">
-						<li class="list-inline-item">
+				<div class="editorial-pullquote">
+					<p class="pullquote-text">"{{ .comment }}"</p>
+					<div class="pullquote-meta">
+						<div class="pullquote-avatar">
 							{{ partial "image.html" (dict "Src" .avater "Alt" .name) }}
-						</li>
-						<li class="list-inline-item fw-semibold">{{ .name }}</li>
-					</ul>
+						</div>
+						<div class="pullquote-name">{{ .name }}</div>
+					</div>
 				</div>
 				{{ end }}
 				{{ end }}
@@ -267,29 +368,71 @@
 {{ "<!-- Screenshots Gallery -->" | safeHTML }}
 {{ if .Params.screenshots_gallery.enable }}
 {{ with .Params.screenshots_gallery }}
-<section class="section bg-gray">
+<section class="section section-screenshots">
 	<div class="container">
 		<div class="row">
 			<div class="col-lg-12 text-center mb-5">
 				<h2 class="mb-3">{{ .title | safeHTML | markdownify }}</h2>
-				<p class="text-muted">{{ .subtitle | safeHTML | markdownify }}</p>
+				<p class="text-muted lead">{{ .subtitle | safeHTML | markdownify }}</p>
 			</div>
 		</div>
-		<div class="row justify-content-center g-4">
-			{{ range .screenshots }}
-			<div class="col-6 col-md-4 col-lg-2 mb-2">
-				<div class="text-center">
-					<div class="ss-wrap">
-						{{ partial "image.html" (dict "Src" .image "Alt" .title) }}
+	</div>
+	<div class="container-fluid px-0">
+		<div class="swiper screenshots-carousel" id="screenshotsCarousel">
+			<div class="swiper-wrapper">
+				{{ range .screenshots }}
+				<div class="swiper-slide screenshot-slide">
+					<div class="screenshot-phone-frame">
+						<div class="screenshot-phone-notch" aria-hidden="true"></div>
+						<div class="ss-wrap">
+							{{ partial "image.html" (dict "Src" .image "Alt" .title) }}
+						</div>
 					</div>
-					<h4 class="mt-3 h6 fw-bold">{{ .title }}</h4>
-					<p class="text-muted small">{{ .description }}</p>
+					<div class="screenshot-caption text-center mt-3">
+						<h4 class="screenshot-title mb-1">{{ .title }}</h4>
+						<p class="screenshot-desc mb-0">{{ .description }}</p>
+					</div>
 				</div>
+				{{ end }}
 			</div>
-			{{ end }}
+			<div class="swiper-pagination screenshots-pagination"></div>
 		</div>
 	</div>
 </section>
+<script>
+(function() {
+	function initGallery() {
+		if (typeof Swiper === 'undefined') {
+			setTimeout(initGallery, 100);
+			return;
+		}
+		var el = document.getElementById('screenshotsCarousel');
+		if (!el) return;
+		new Swiper(el, {
+			slidesPerView: 'auto',
+			centeredSlides: true,
+			spaceBetween: 28,
+			loop: true,
+			slideToClickedSlide: true,
+			grabCursor: true,
+			pagination: {
+				el: el.querySelector('.screenshots-pagination'),
+				clickable: true,
+			},
+			breakpoints: {
+				320: { spaceBetween: 16 },
+				768: { spaceBetween: 24 },
+				1024: { spaceBetween: 32 }
+			}
+		});
+	}
+	if (document.readyState === 'loading') {
+		document.addEventListener('DOMContentLoaded', initGallery);
+	} else {
+		initGallery();
+	}
+})();
+</script>
 {{ end }}
 {{ end }}
 {{ "<!-- End of Screenshots Gallery -->" | safeHTML }}
@@ -297,35 +440,38 @@
 {{"<!-- Services -->" | safeHTML }}
 {{ if .Params.service.enable }}
 {{ with .Params.service }}
-<section class="service section">
-	<div class="container-fluid p-0">
+<section class="section section-services">
+	<div class="container">
 		<div class="row">
-			<div class="col-lg-12">
-				<div class="section-title">
-					<h2>{{ .title | safeHTML | markdownify }}</h2>
-					<p>{{ .subtitle | safeHTML | markdownify }}</p>
-				</div>
+			<div class="col-lg-12 text-center mb-5">
+				<h2 class="mb-3">{{ .title | safeHTML | markdownify }}</h2>
+				<p class="text-muted lead">{{ .subtitle | safeHTML | markdownify }}</p>
 			</div>
 		</div>
-		<div class="row no-gutters">
-			<div class="col-lg-6 align-self-center">
-				<div class="service-thumb svc-phone left text-center" data-aos="fade-right">
-					{{ partial "image.html" (dict "Src" .image "Alt" "service image") }}
+		<div class="row align-items-center gy-5">
+			<div class="col-lg-5 text-center">
+				<div class="svc-phone-stage" data-aos="fade-right">
+					<div class="svc-phone-frame">
+						<div class="phone-notch" aria-hidden="true"></div>
+						<div class="svc-phone">
+							{{ partial "image.html" (dict "Src" .image "Alt" "PsychDiary Service Overview") }}
+						</div>
+					</div>
 				</div>
 			</div>
-			<div class="col-lg-5 me-auto align-self-center">
-				<div class="service-box">
-					<div class="row align-items-center">
-						{{ range .service_item }}
-						<div class="col-md-6 col-xs-12">
-							<div class="service-item">
-								<i class="{{ .icon }}"></i>
-								<h3>{{ .name }}</h3>
-								<p>{{ .content | safeHTML | markdownify }}</p>
+			<div class="col-lg-7">
+				<div class="row g-4">
+					{{ range .service_item }}
+					<div class="col-md-6">
+						<div class="service-card">
+							<div class="service-card-icon">
+								<i class="{{ .icon }}" aria-hidden="true"></i>
 							</div>
+							<h3 class="service-card-title">{{ .name }}</h3>
+							<p class="service-card-content">{{ .content | safeHTML | markdownify }}</p>
 						</div>
-						{{ end }}
 					</div>
+					{{ end }}
 				</div>
 			</div>
 		</div>
@@ -338,21 +484,24 @@
 {{ "<!-- Privacy Trust Section -->" | safeHTML }}
 {{ if .Params.privacy_trust.enable }}
 {{ with .Params.privacy_trust }}
-<section class="section bg-primary text-white">
-	<div class="container">
+<section class="section section-privacy-trust" id="privacy">
+	<div class="privacy-glow-bg" aria-hidden="true"></div>
+	<div class="container position-relative">
 		<div class="row">
 			<div class="col-lg-12 text-center mb-5">
 				<h2 class="text-white mb-3">{{ .title | safeHTML | markdownify }}</h2>
-				<p class="text-white-50 lead">{{ .subtitle | safeHTML | markdownify }}</p>
+				<p class="privacy-subtitle lead">{{ .subtitle | safeHTML | markdownify }}</p>
 			</div>
 		</div>
-		<div class="row">
+		<div class="row g-4 justify-content-center">
 			{{ range .trust_points }}
-			<div class="col-md-4 col-sm-6 mb-4">
-				<div class="text-center">
-					<i class="{{ .icon }} fs-1 mb-3 text-white"></i>
-					<h4 class="text-white mb-3">{{ .title }}</h4>
-					<p class="text-white-50">{{ .content | markdownify }}</p>
+			<div class="col-lg-4 col-md-6">
+				<div class="privacy-glass-card">
+					<div class="privacy-card-icon">
+						<i class="{{ .icon }}" aria-hidden="true"></i>
+					</div>
+					<h3 class="privacy-card-title">{{ .title }}</h3>
+					<p class="privacy-card-content">{{ .content | markdownify }}</p>
 				</div>
 			</div>
 			{{ end }}
@@ -360,9 +509,13 @@
 		{{ if .medical_disclaimer }}
 		<div class="row mt-5">
 			<div class="col-lg-10 mx-auto">
-				<div class="alert alert-warning bg-warning bg-opacity-25 border-warning">
-					<i class="fa-solid fa-triangle-exclamation me-2"></i>
-					<strong>Important:</strong> {{ .medical_disclaimer | markdownify }}
+				<div class="privacy-disclaimer-callout">
+					<div class="disclaimer-icon" aria-hidden="true">
+						<i class="fa-solid fa-triangle-exclamation"></i>
+					</div>
+					<div class="disclaimer-text">
+						<strong>Important:</strong> {{ .medical_disclaimer | markdownify }}
+					</div>
 				</div>
 			</div>
 		</div>
@@ -376,7 +529,7 @@
 {{ "<!-- Statistics Section -->" | safeHTML }}
 {{ if .Params.statistics.enable }}
 {{ with .Params.statistics }}
-<section class="section">
+<section class="section section-stats" id="statistics">
 	<div class="container">
 		<div class="row">
 			<div class="col-lg-12 text-center mb-5">
@@ -384,19 +537,70 @@
 				<p class="text-muted lead">{{ .subtitle | safeHTML | markdownify }}</p>
 			</div>
 		</div>
-		<div class="row">
+		<div class="row g-4">
 			{{ range .stats }}
-			<div class="col-md-3 col-sm-6 mb-4">
-				<div class="text-center p-4 bg-light rounded shadow-sm h-100">
-					<div class="display-4 fw-bold text-primary mb-2">{{ .number }}</div>
-					<h4 class="h5 fw-bold mb-2">{{ .label }}</h4>
-					<p class="text-muted small mb-0">{{ .description | markdownify }}</p>
+			<div class="col-lg-3 col-sm-6">
+				<div class="stat-card">
+					<div class="stat-num" data-countup="{{ .number }}">{{ .number }}</div>
+					<h3 class="stat-label">{{ .label }}</h3>
+					<p class="stat-desc">{{ .description | markdownify }}</p>
 				</div>
 			</div>
 			{{ end }}
 		</div>
 	</div>
 </section>
+<script>
+(function() {
+	var elements = document.querySelectorAll('[data-countup]');
+	if (!elements.length) return;
+
+	var prefersReduced = window.matchMedia && window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+	if (prefersReduced) return;
+
+	function animateElement(el) {
+		var raw = el.getAttribute('data-countup') || '';
+		var match = raw.match(/^(\d+)(.*)$/);
+		if (!match) return;
+
+		var target = parseInt(match[1], 10);
+		var suffix = match[2];
+		var duration = 1200;
+		var startTime = null;
+
+		function step(timestamp) {
+			if (!startTime) startTime = timestamp;
+			var progress = Math.min((timestamp - startTime) / duration, 1);
+			var ease = 1 - Math.pow(1 - progress, 3);
+			var current = Math.floor(ease * target);
+			el.textContent = current + suffix;
+			if (progress < 1) {
+				window.requestAnimationFrame(step);
+			} else {
+				el.textContent = raw;
+			}
+		}
+		window.requestAnimationFrame(step);
+	}
+
+	if ('IntersectionObserver' in window) {
+		var observer = new IntersectionObserver(function(entries, obs) {
+			entries.forEach(function(entry) {
+				if (entry.isIntersecting) {
+					animateElement(entry.target);
+					obs.unobserve(entry.target);
+				}
+			});
+		}, { threshold: 0.2 });
+
+		elements.forEach(function(el) {
+			observer.observe(el);
+		});
+	} else {
+		elements.forEach(animateElement);
+	}
+})();
+</script>
 {{ end }}
 {{ end }}
 {{ "<!-- End of Statistics Section -->" | safeHTML }}
@@ -436,17 +640,17 @@
 {{ "<!-- FAQ Section -->" | safeHTML }}
 {{ if .Params.faq.enable }}
 {{ with .Params.faq }}
-<section class="section bg-light">
+<section class="section section-faq bg-transparent" id="faq">
 	<div class="container">
 		<div class="row">
 			<div class="col-lg-12 text-center mb-5">
 				<h2 class="mb-3">{{ .title | safeHTML | markdownify }}</h2>
-				<p class="text-muted">{{ .subtitle | safeHTML | markdownify }}</p>
+				<p class="text-muted lead">{{ .subtitle | safeHTML | markdownify }}</p>
 			</div>
 		</div>
 		<div class="row">
 			<div class="col-lg-8 mx-auto">
-				<div class="accordion" id="faqAccordion">
+				<div class="accordion dusk-accordion" id="faqAccordion">
 					{{ range $index, $item := .faq_items }}
 					<div class="accordion-item">
 						<h2 class="accordion-header" id="faqHeading{{ $index }}">

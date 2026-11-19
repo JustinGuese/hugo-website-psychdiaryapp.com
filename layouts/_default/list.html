@@ -14,12 +14,13 @@
 </section>
 {{ "<!-- End of Page Title -->" | safeHTML }}
 
-{{ if le $paginator.PageNumber 1 }}
+{{ $featuredPosts := where .Data.Pages "Type" "featured" }}
+{{ if and (le $paginator.PageNumber 1) (gt (len $featuredPosts) 0) }}
 {{ "<!-- Featured Article -->" | safeHTML }}
 <section class="section featured-article">
   <div class="container">
     <div class="row">
-      {{ range first 1 (where .Data.Pages "Type" "featured") }}
+      {{ range first 1 $featuredPosts }}
       <div class="col-md-12">
         <article class="featured">
           <div class="image"> 
@@ -34,7 +35,7 @@
               <li class="list-inline-item mb-0">{{ .PublishDate.Format "January 02, 2006" }}</li>
             </ul>
             <p>{{ .Summary }}</p>
-            <a class="btn btn-primary btn-md" href="{{ .Permalink }}">{{ i18n "read_more" }}</a>
+            <a class="btn btn-accent btn-md" href="{{ .Permalink }}">{{ i18n "read_more" }}</a>
           </div>
         </article>
       </div>

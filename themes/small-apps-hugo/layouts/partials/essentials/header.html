@@ -1,4 +1,4 @@
-<nav class="navbar main-nav navbar-expand-lg p-0">
+<nav class="navbar main-nav navbar-expand-lg p-0" id="main-nav">
   <div class="container">
     <a class="navbar-brand" href="{{ .Site.BaseURL | relLangURL }}">
       <!-- logo -->
@@ -40,11 +40,11 @@
       <div class="app-store-buttons d-flex align-items-center gap-2 ms-3">
         {{ if .Site.Params.app_store }}
           {{ if .Site.Params.app_store.web_app_url }}
-          <a href="{{ .Site.Params.app_store.web_app_url | safeURL }}" class="btn btn-primary btn-sm btn-nav-try track-app-click" target="_blank" rel="noopener">
+          <a href="{{ .Site.Params.app_store.web_app_url | safeURL }}" class="btn btn-accent btn-nav-try track-app-click" target="_blank" rel="noopener">
             <i class="fa-solid fa-globe me-1"></i> Try It Now
           </a>
           {{ else }}
-          <a href="https://app.psychdiaryapp.com" class="btn btn-primary btn-sm btn-nav-try track-app-click" target="_blank" rel="noopener">
+          <a href="https://app.psychdiaryapp.com" class="btn btn-accent btn-nav-try track-app-click" target="_blank" rel="noopener">
             <i class="fa-solid fa-globe me-1"></i> Try It Now
           </a>
           {{ end }}
@@ -61,7 +61,7 @@
           </a>
           {{ end }}
         {{ else }}
-          <a href="https://app.psychdiaryapp.com" class="btn btn-primary btn-sm btn-nav-try" target="_blank" rel="noopener">
+          <a href="https://app.psychdiaryapp.com" class="btn btn-accent btn-nav-try track-app-click" target="_blank" rel="noopener">
             <i class="fa-solid fa-globe me-1"></i> Try It Now
           </a>
         {{ end }}
@@ -90,3 +90,19 @@
     </div>
   </div>
 </nav>
+
+<script>
+(function() {
+  const nav = document.getElementById('main-nav') || document.querySelector('.main-nav');
+  if (!nav) return;
+  function updateNav() {
+    if (window.scrollY > 10) {
+      nav.classList.add('is-scrolled');
+    } else {
+      nav.classList.remove('is-scrolled');
+    }
+  }
+  window.addEventListener('scroll', updateNav, { passive: true });
+  updateNav();
+})();
+</script>

@@ -1,0 +1,99 @@
+{{- $src := "" -}}
+{{- $alt := "image" -}}
+{{- $class := "" -}}
+{{- $loading := "lazy" -}}
+{{- $size := "" -}}
+{{- $sizes := "(max-width: 576px) 100vw, (max-width: 992px) 50vw, 600px" -}}
+{{- $webp := true -}}
+{{- $context := false -}}
+
+{{- if reflect.IsMap . -}}
+  {{- $src = .Src -}}
+  {{- with .Alt }}{{ $alt = . }}{{ end -}}
+  {{- with .Class }}{{ $class = . }}{{ end -}}
+  {{- with .Loading }}{{ $loading = . }}{{ end -}}
+  {{- with .Size }}{{ $size = . }}{{ end -}}
+  {{- with .Sizes }}{{ $sizes = . }}{{ end -}}
+  {{- if isset . "Webp" }}{{ $webp = .Webp }}{{ end -}}
+  {{- with .Context }}{{ $context = . }}{{ end -}}
+{{- else -}}
+  {{- $src = . -}}
+{{- end -}}
+
+{{- if not $src -}}
+  {{- /* No source provided */ -}}
+{{- else if or (hasPrefix $src "http://") (hasPrefix $src "https://") (hasPrefix $src "//") -}}
+  <img src="{{ $src }}" alt="{{ $alt }}" class="{{ $class }} img" loading="{{ $loading }}" decoding="async"{{ if $size }} style="max-width: {{ $size }};"{{ end }}>
+{{- else -}}
+  {{- $cleanSrc := strings.TrimPrefix "/" $src -}}
+  {{- $image := resources.Get $cleanSrc -}}
+  {{- if not $image -}}
+    {{- if $context -}}
+      {{- with $context.Resources -}}
+        {{- $image = .GetMatch $cleanSrc | default (.Get $cleanSrc) -}}
+      {{- end -}}
+    {{- end -}}
+  {{- end -}}
+
+  {{- if not $image -}}
+    {{- /* Fallback if image not found in assets/resources */ -}}
+    <img src="{{ $src | relURL }}" alt="{{ $alt }}" class="{{ $class }} img" loading="{{ $loading }}" decoding="async"{{ if $size }} style="max-width: {{ $size }};"{{ end }}>
+  {{- else -}}
+    {{- $ext := path.Ext $image.Key -}}
+    {{- $isSvg := or (eq $ext ".svg") (eq $image.MediaType.SubType "svg") -}}
+    {{- $isGif := or (eq $ext ".gif") (eq $image.MediaType.SubType "gif") -}}
+
+    {{- if or $isSvg $isGif (not $webp) -}}
+      <img src="{{ $image.RelPermalink }}" alt="{{ $alt }}" class="{{ $class }} img" loading="{{ $loading }}" decoding="async"{{ if gt $image.Width 0 }} width="{{ $image.Width }}" height="{{ $image.Height }}"{{ end }}{{ if eq $loading "eager" }} fetchpriority="high"{{ end }}>
+    {{- else -}}
+      {{- $origWidth := $image.Width -}}
+      {{- $origHeight := $image.Height -}}
+
+      {{- if $size -}}
+        {{- $cleanSize := replace $size "px" "" -}}
+        {{- if not (strings.Contains $cleanSize "x") -}}
+          {{- $cleanSize = printf "%sx" $cleanSize -}}
+        {{- end -}}
+        {{- $resized := $image.Resize $cleanSize -}}
+        {{- $webpResized := $image.Resize (printf "%s webp q85" $cleanSize) -}}
+        <picture>
+          <source type="image/webp" srcset="{{ $webpResized.RelPermalink }}">
+          <source srcset="{{ $resized.RelPermalink }}">
+          <img src="{{ $resized.RelPermalink }}" alt="{{ $alt }}" class="{{ $class }} img" loading="{{ $loading }}" decoding="async" width="{{ $resized.Width }}" height="{{ $resized.Height }}"{{ if eq $loading "eager" }} fetchpriority="high"{{ end }}>
+        </picture>
+      {{- else if lt $origWidth 400 -}}
+        {{- $webpFull := $image.Resize (printf "%dx webp q85" $origWidth) -}}
+        <picture>
+          <source type="image/webp" srcset="{{ $webpFull.RelPermalink }}">
+          <source srcset="{{ $image.RelPermalink }}">
+          <img src="{{ $image.RelPermalink }}" alt="{{ $alt }}" class="{{ $class }} img" loading="{{ $loading }}" decoding="async" width="{{ $origWidth }}" height="{{ $origHeight }}"{{ if eq $loading "eager" }} fetchpriority="high"{{ end }}>
+        </picture>
+      {{- else -}}
+        {{- $webpSrcset := slice -}}
+        {{- $fallbackSrcset := slice -}}
+        {{- $breakpoints := slice 360 640 960 1200 -}}
+        {{- range $breakpoints -}}
+          {{- if lt . $origWidth -}}
+            {{- $wWebp := $image.Resize (printf "%dx webp q85" .) -}}
+            {{- $wFallback := $image.Resize (printf "%dx" .) -}}
+            {{- $webpSrcset = $webpSrcset | append (printf "%s %dw" $wWebp.RelPermalink .) -}}
+            {{- $fallbackSrcset = $fallbackSrcset | append (printf "%s %dw" $wFallback.RelPermalink .) -}}
+          {{- end -}}
+        {{- end -}}
+        {{- $fullWebp := $image.Resize (printf "%dx webp q85" $origWidth) -}}
+        {{- $webpSrcset = $webpSrcset | append (printf "%s %dw" $fullWebp.RelPermalink $origWidth) -}}
+        {{- $fallbackSrcset = $fallbackSrcset | append (printf "%s %dw" $image.RelPermalink $origWidth) -}}
+
+        {{- $fallbackImg := $image -}}
+        {{- if gt $origWidth 1110 -}}
+          {{- $fallbackImg = $image.Resize "1110x" -}}
+        {{- end -}}
+        <picture>
+          <source type="image/webp" srcset="{{ delimit $webpSrcset ", " }}" sizes="{{ $sizes }}">
+          <source srcset="{{ delimit $fallbackSrcset ", " }}" sizes="{{ $sizes }}">
+          <img src="{{ $fallbackImg.RelPermalink }}" alt="{{ $alt }}" class="{{ $class }} img" loading="{{ $loading }}" decoding="async" width="{{ $origWidth }}" height="{{ $origHeight }}"{{ if eq $loading "eager" }} fetchpriority="high"{{ end }}>
+        </picture>
+      {{- end -}}
+    {{- end -}}
+  {{- end -}}
+{{- end -}}

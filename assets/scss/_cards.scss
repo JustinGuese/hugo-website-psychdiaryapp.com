@@ -1,0 +1,363 @@
+// Reusable card styles for Dusk Journal theme
+
+// --------------------------------------------------
+// Banner Feature Card (Overlapping hero transition)
+// --------------------------------------------------
+.banner-feature-card {
+  background: rgba(255, 255, 255, 0.92);
+  backdrop-filter: blur(20px);
+  -webkit-backdrop-filter: blur(20px);
+  border: 1px solid rgba(20, 18, 43, 0.08);
+  border-radius: var(--radius);
+  box-shadow: var(--shadow-soft);
+  padding: 44px 36px;
+  margin-top: -60px;
+  position: relative;
+  z-index: 5;
+
+  @include mobile {
+    margin-top: -30px;
+    padding: 30px 18px;
+  }
+}
+
+.banner-feature-item {
+  padding: 12px;
+  height: 100%;
+
+  .banner-feature-icon {
+    width: 60px;
+    height: 60px;
+    margin: 0 auto 20px;
+    border-radius: 18px;
+    background: rgba(59, 58, 143, 0.08);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 24px;
+    color: var(--indigo);
+    transition: transform 0.25s ease, background 0.25s ease;
+  }
+
+  &:hover .banner-feature-icon {
+    transform: scale(1.08);
+    background: rgba(59, 58, 143, 0.14);
+  }
+
+  .banner-feature-title {
+    font-family: var(--font-serif);
+    font-size: 1.25rem;
+    font-weight: 600;
+    color: var(--ink);
+    margin-bottom: 10px;
+  }
+
+  .banner-feature-desc {
+    color: var(--muted);
+    font-size: 0.95rem;
+    line-height: 1.6;
+    margin-bottom: 0;
+  }
+}
+
+// --------------------------------------------------
+// Problem / Solution Comparison Cards (Before / After)
+// --------------------------------------------------
+.problem-card {
+  background: rgba(20, 18, 43, 0.03);
+  border: 1px solid rgba(20, 18, 43, 0.08);
+  border-radius: var(--radius);
+  padding: 44px 36px;
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+
+  @include mobile {
+    padding: 28px 20px;
+  }
+
+  .problem-card-badge {
+    display: inline-flex;
+    align-items: center;
+    align-self: flex-start;
+    font-size: 0.78rem;
+    font-weight: 600;
+    text-transform: uppercase;
+    letter-spacing: 0.06em;
+    color: var(--muted);
+    background: rgba(20, 18, 43, 0.06);
+    padding: 6px 14px;
+    border-radius: 20px;
+    margin-bottom: 22px;
+  }
+
+  .problem-card-title {
+    font-family: var(--font-serif);
+    font-size: 1.5rem;
+    color: var(--ink);
+    margin-bottom: 24px;
+  }
+
+  .problem-list {
+    margin-top: auto;
+  }
+
+  .problem-item {
+    display: flex;
+    align-items: flex-start;
+    gap: 14px;
+    margin-bottom: 18px;
+
+    &:last-child {
+      margin-bottom: 0;
+    }
+  }
+
+  .problem-item-icon {
+    width: 24px;
+    height: 24px;
+    min-width: 24px;
+    border-radius: 50%;
+    background: rgba(20, 18, 43, 0.08);
+    color: var(--muted);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 12px;
+    margin-top: 2px;
+  }
+
+  .problem-item-text {
+    color: var(--text);
+    font-size: 0.98rem;
+    line-height: 1.55;
+  }
+}
+
+.solution-card {
+  background: var(--surface);
+  border: 1px solid rgba(59, 58, 143, 0.18);
+  border-radius: var(--radius);
+  padding: 44px 36px;
+  height: 100%;
+  box-shadow: 0 20px 50px rgba(59, 58, 143, 0.08);
+  position: relative;
+  overflow: hidden;
+  display: flex;
+  flex-direction: column;
+
+  &::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    height: 4px;
+    background: linear-gradient(90deg, var(--indigo) 0%, var(--calm) 50%, var(--accent) 100%);
+  }
+
+  @include mobile {
+    padding: 28px 20px;
+  }
+
+  .solution-card-badge {
+    display: inline-flex;
+    align-items: center;
+    align-self: flex-start;
+    font-size: 0.78rem;
+    font-weight: 600;
+    text-transform: uppercase;
+    letter-spacing: 0.06em;
+    color: var(--indigo);
+    background: rgba(59, 58, 143, 0.08);
+    padding: 6px 14px;
+    border-radius: 20px;
+    margin-bottom: 22px;
+  }
+
+  .solution-card-title {
+    font-family: var(--font-serif);
+    font-size: 1.5rem;
+    color: var(--indigo);
+    margin-bottom: 20px;
+  }
+
+  .solution-card-lead {
+    color: var(--text);
+    font-size: 1.05rem;
+    line-height: 1.7;
+    margin-bottom: 24px;
+  }
+
+  .solution-card-action {
+    margin-top: auto;
+  }
+}
+
+// --------------------------------------------------
+// Service 2x2 Cards with Hover Lift
+// --------------------------------------------------
+.service-card {
+  background: var(--surface);
+  border: 1px solid rgba(20, 18, 43, 0.07);
+  border-radius: var(--radius);
+  padding: 32px 28px;
+  height: 100%;
+  box-shadow: 0 4px 18px rgba(20, 18, 43, 0.03);
+  transition: transform 0.25s ease, box-shadow 0.25s ease, border-color 0.25s ease;
+
+  &:hover {
+    transform: translateY(-6px);
+    box-shadow: var(--shadow-soft);
+    border-color: rgba(59, 58, 143, 0.22);
+  }
+
+  .service-card-icon {
+    width: 52px;
+    height: 52px;
+    border-radius: 14px;
+    background: rgba(59, 58, 143, 0.08);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 20px;
+    color: var(--indigo);
+    margin-bottom: 20px;
+    transition: transform 0.25s ease, background 0.25s ease;
+  }
+
+  &:hover .service-card-icon {
+    transform: scale(1.08);
+    background: rgba(59, 58, 143, 0.14);
+  }
+
+  .service-card-title {
+    font-family: var(--font-serif);
+    font-size: 1.2rem;
+    font-weight: 600;
+    color: var(--ink);
+    margin-bottom: 10px;
+  }
+
+  .service-card-content {
+    color: var(--muted);
+    font-size: 0.94rem;
+    line-height: 1.6;
+    margin-bottom: 0;
+  }
+}
+
+// --------------------------------------------------
+// Privacy Glass Cards & Callout Disclaimer
+// --------------------------------------------------
+.privacy-glass-card {
+  background: rgba(255, 255, 255, 0.05);
+  backdrop-filter: blur(16px);
+  -webkit-backdrop-filter: blur(16px);
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  border-radius: var(--radius);
+  padding: 32px 24px;
+  text-align: center;
+  height: 100%;
+  transition: transform 0.25s ease, border-color 0.25s ease, background 0.25s ease;
+
+  &:hover {
+    transform: translateY(-4px);
+    border-color: rgba(255, 255, 255, 0.24);
+    background: rgba(255, 255, 255, 0.08);
+  }
+
+  .privacy-card-icon {
+    font-size: 2rem;
+    color: var(--calm);
+    margin-bottom: 18px;
+  }
+
+  .privacy-card-title {
+    font-family: var(--font-serif);
+    font-size: 1.2rem;
+    font-weight: 600;
+    color: #FFFFFF;
+    margin-bottom: 10px;
+  }
+
+  .privacy-card-content {
+    color: rgba(255, 255, 255, 0.72);
+    font-size: 0.93rem;
+    line-height: 1.6;
+    margin-bottom: 0;
+  }
+}
+
+.privacy-disclaimer-callout {
+  background: rgba(245, 185, 122, 0.08);
+  border: 1px solid rgba(245, 185, 122, 0.25);
+  border-left: 4px solid var(--accent);
+  border-radius: 14px;
+  padding: 22px 26px;
+  display: flex;
+  align-items: flex-start;
+  gap: 16px;
+
+  .disclaimer-icon {
+    color: var(--accent);
+    font-size: 1.35rem;
+    margin-top: 2px;
+    flex-shrink: 0;
+  }
+
+  .disclaimer-text {
+    color: rgba(255, 255, 255, 0.9);
+    font-size: 0.95rem;
+    line-height: 1.65;
+
+    strong {
+      color: var(--accent);
+      font-weight: 700;
+    }
+  }
+}
+
+// --------------------------------------------------
+// Statistics Cards (Serif Numerals)
+// --------------------------------------------------
+.stat-card {
+  background: var(--surface);
+  border: 1px solid rgba(20, 18, 43, 0.07);
+  border-radius: var(--radius);
+  padding: 34px 22px;
+  text-align: center;
+  height: 100%;
+  box-shadow: 0 4px 18px rgba(20, 18, 43, 0.03);
+  transition: transform 0.25s ease, box-shadow 0.25s ease;
+
+  &:hover {
+    transform: translateY(-4px);
+    box-shadow: var(--shadow-soft);
+  }
+
+  .stat-num {
+    font-family: var(--font-serif);
+    font-size: 3.25rem;
+    font-weight: 700;
+    color: var(--indigo);
+    letter-spacing: -0.02em;
+    line-height: 1.1;
+    margin-bottom: 10px;
+  }
+
+  .stat-label {
+    font-family: var(--font-sans);
+    font-size: 1.05rem;
+    font-weight: 600;
+    color: var(--ink);
+    margin-bottom: 8px;
+  }
+
+  .stat-desc {
+    color: var(--muted);
+    font-size: 0.88rem;
+    line-height: 1.5;
+    margin-bottom: 0;
+  }
+}

@@ -1,0 +1,422 @@
+// Navigation and Footer Styles - Dusk Journal Theme
+// Shared design tokens: var(--ink), var(--indigo), var(--accent), var(--paper), etc.
+
+// -----------------------------------------------------------------------------
+// Sticky Glass Navbar
+// -----------------------------------------------------------------------------
+.main-nav {
+  position: sticky;
+  top: 0;
+  z-index: 1030;
+  background-color: rgba(250, 247, 242, 0.88);
+  backdrop-filter: blur(16px);
+  -webkit-backdrop-filter: blur(16px);
+  border-bottom: 1px solid rgba(20, 18, 43, 0.06);
+  padding: 12px 0;
+  transition: background-color 0.25s ease, border-color 0.25s ease, box-shadow 0.25s ease, padding 0.25s ease;
+
+  &.is-scrolled {
+    background-color: rgba(250, 247, 242, 0.96);
+    border-bottom: 1px solid rgba(20, 18, 43, 0.12);
+    box-shadow: 0 4px 20px rgba(20, 18, 43, 0.08);
+    padding: 8px 0;
+  }
+
+  // Brand / Logo
+  .navbar-brand {
+    padding: 0;
+    margin-right: 24px;
+
+    img {
+      max-width: 100px;
+      max-height: 48px;
+      width: auto;
+      height: auto;
+      display: block;
+      transition: transform 0.2s ease;
+    }
+
+    &:hover img {
+      transform: scale(1.02);
+    }
+  }
+
+  // Navigation Links
+  .navbar-nav {
+    .nav-item {
+      position: relative;
+      font-family: var(--font-sans);
+
+      .nav-link {
+        color: var(--ink);
+        font-size: 13px;
+        font-weight: 600;
+        letter-spacing: 0.03em;
+        text-transform: uppercase;
+        padding: 8px 14px;
+        line-height: 24px;
+        text-align: center;
+        transition: color 0.2s ease;
+
+        &:hover,
+        &:focus {
+          color: var(--indigo);
+        }
+      }
+
+      &.active {
+        .nav-link {
+          color: var(--indigo);
+          font-weight: 700;
+
+          // Remove old theme bar
+          &::before {
+            display: none;
+          }
+        }
+      }
+    }
+  }
+
+  // Dropdown menu
+  .dropdown-slide {
+    .dropdown-menu {
+      background: var(--surface);
+      border: 1px solid rgba(20, 18, 43, 0.08);
+      border-radius: 12px;
+      box-shadow: var(--shadow-soft);
+      padding: 8px;
+      margin-top: 4px;
+
+      .dropdown-item {
+        font-size: 13px;
+        font-weight: 500;
+        color: var(--text);
+        border-radius: 6px;
+        padding: 8px 14px;
+        transition: background 0.18s ease, color 0.18s ease;
+
+        &:hover,
+        &:focus {
+          background: rgba(59, 58, 143, 0.08);
+          color: var(--indigo);
+          transform: none;
+        }
+      }
+    }
+  }
+
+  // Mobile Toggler
+  .navbar-toggler {
+    border: 1px solid rgba(20, 18, 43, 0.14);
+    background: rgba(255, 255, 255, 0.8);
+    border-radius: 8px;
+    padding: 8px 12px;
+    color: var(--ink);
+    font-size: 18px;
+    line-height: 1;
+    cursor: pointer;
+    transition: background 0.2s ease, border-color 0.2s ease, box-shadow 0.2s ease;
+
+    &:hover,
+    &:focus {
+      background: #ffffff;
+      border-color: var(--indigo);
+      outline: none;
+      box-shadow: 0 0 0 3px rgba(59, 58, 143, 0.15);
+    }
+
+    .fa-xmark {
+      display: none;
+    }
+
+    &[aria-expanded="true"] {
+      .fa-bars {
+        display: none;
+      }
+
+      .fa-xmark {
+        display: inline-block;
+      }
+    }
+  }
+
+  // Responsive Menu Behavior
+  @media (max-width: 991.98px) {
+    .navbar-collapse {
+      background: var(--paper);
+      border: 1px solid rgba(20, 18, 43, 0.08);
+      border-radius: 16px;
+      box-shadow: 0 12px 36px rgba(20, 18, 43, 0.12);
+      padding: 20px;
+      margin-top: 12px;
+      margin-bottom: 12px;
+    }
+
+    .navbar-nav {
+      max-width: 100%;
+      margin: 0 0 16px;
+
+      .nav-item {
+        border-bottom: 1px solid rgba(20, 18, 43, 0.05);
+
+        &:last-child {
+          border-bottom: none;
+        }
+
+        .nav-link {
+          padding: 10px 14px;
+        }
+      }
+    }
+
+    .app-store-buttons {
+      flex-direction: column;
+      width: 100%;
+      margin-left: 0;
+      gap: 10px;
+
+      .btn-nav-try {
+        width: 100%;
+        justify-content: center;
+      }
+
+      .app-store-link {
+        width: 100%;
+        justify-content: center;
+      }
+    }
+  }
+
+  @media (min-width: 992px) {
+    .navbar-collapse {
+      display: flex;
+      align-items: center;
+    }
+
+    .app-store-buttons {
+      margin-left: auto;
+    }
+  }
+}
+
+// -----------------------------------------------------------------------------
+// Amber "Try It Now" CTA Button
+// -----------------------------------------------------------------------------
+.btn-nav-try {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 6px;
+  background: var(--accent);
+  color: var(--accent-ink);
+  border: 1px solid var(--accent);
+  border-radius: 9999px;
+  padding: 7px 18px;
+  font-size: 12px;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+  white-space: nowrap;
+  text-decoration: none;
+  box-shadow: 0 4px 14px rgba(245, 185, 122, 0.4);
+  transition: transform 0.2s ease, box-shadow 0.2s ease, background 0.2s ease;
+
+  &:hover,
+  &:focus {
+    background: darken(#F5B97A, 6%);
+    color: var(--accent-ink);
+    border-color: darken(#F5B97A, 6%);
+    transform: translateY(-1px);
+    box-shadow: 0 6px 18px rgba(245, 185, 122, 0.55);
+  }
+
+  &:active {
+    transform: translateY(0);
+    box-shadow: 0 2px 8px rgba(245, 185, 122, 0.35);
+  }
+
+  i,
+  svg {
+    color: var(--accent-ink);
+  }
+}
+
+// App Store Badges in Navbar
+.app-store-buttons {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+
+  .app-store-link {
+    display: inline-flex;
+    align-items: center;
+  }
+
+  .app-store-img {
+    height: 36px;
+    width: auto;
+    transition: opacity 0.2s ease, transform 0.2s ease;
+
+    &:hover {
+      opacity: 0.88;
+      transform: translateY(-1px);
+    }
+  }
+}
+
+// Language selector
+.language-selector {
+  border: 1px solid rgba(20, 18, 43, 0.1);
+  background: rgba(255, 255, 255, 0.6);
+  border-radius: 6px;
+  color: var(--ink);
+  font-size: 12px;
+  text-transform: uppercase;
+  font-weight: 600;
+  padding: 6px 10px;
+  cursor: pointer;
+  outline: none;
+  transition: border-color 0.2s ease, color 0.2s ease;
+
+  &:hover,
+  &:focus {
+    border-color: var(--indigo);
+    color: var(--indigo);
+  }
+
+  option {
+    background: var(--surface);
+    color: var(--ink);
+    padding: 8px;
+  }
+}
+
+// -----------------------------------------------------------------------------
+// Footer on Ink Canvas
+// -----------------------------------------------------------------------------
+.footer-main {
+  background-color: var(--ink);
+  background-image: radial-gradient(ellipse 70% 60% at 50% 0%, rgba(59, 58, 143, 0.3) 0%, transparent 70%);
+  border-top: 1px solid rgba(255, 255, 255, 0.08);
+  color: var(--paper);
+  padding: 80px 0 60px;
+
+  @include mobile {
+    padding: 50px 0 40px;
+  }
+
+  .block {
+    // Menu links
+    ul.list-inline.mb-5 {
+      margin-bottom: 32px;
+    }
+
+    .list-inline-item {
+      margin: 0 14px 10px;
+
+      a.text-white,
+      a {
+        color: rgba(250, 247, 242, 0.78);
+        font-size: 14px;
+        font-weight: 500;
+        text-decoration: none;
+        transition: color 0.2s ease;
+
+        &:hover {
+          color: var(--accent);
+          text-decoration: none;
+        }
+      }
+    }
+
+    // Logo
+    img {
+      max-width: 110px;
+      height: auto;
+      margin-bottom: 24px;
+      opacity: 0.95;
+      transition: opacity 0.2s ease;
+
+      &:hover {
+        opacity: 1;
+      }
+    }
+
+    // App store badges
+    .footer-app-badges {
+      gap: 12px;
+      margin: 24px 0;
+
+      .app-store-img {
+        height: 42px;
+        width: auto;
+        transition: transform 0.2s ease, opacity 0.2s ease;
+
+        &:hover {
+          transform: translateY(-2px);
+          opacity: 0.92;
+        }
+      }
+    }
+
+    // Product Hunt Badge
+    .producthunt-badge {
+      display: inline-block;
+      transition: transform 0.2s ease;
+
+      &:hover {
+        transform: translateY(-2px);
+      }
+    }
+
+    // Social icon circles
+    ul.social-icon {
+      margin-top: 24px;
+      margin-bottom: 24px;
+
+      li.list-inline-item {
+        margin: 0 6px;
+
+        a {
+          display: inline-flex;
+          align-items: center;
+          justify-content: center;
+          width: 40px;
+          height: 40px;
+          border-radius: 50%;
+          background: rgba(255, 255, 255, 0.06);
+          border: 1px solid rgba(255, 255, 255, 0.1);
+          color: var(--calm);
+          font-size: 16px;
+          text-decoration: none;
+          transition: transform 0.2s ease, background 0.2s ease, color 0.2s ease, border-color 0.2s ease;
+
+          &:hover {
+            background: var(--accent);
+            color: var(--accent-ink);
+            border-color: var(--accent);
+            transform: translateY(-2px);
+          }
+        }
+      }
+    }
+
+    // Copyright text
+    p.content.copyright {
+      color: rgba(250, 247, 242, 0.5);
+      font-size: 14px;
+      margin-top: 24px;
+
+      a {
+        color: rgba(250, 247, 242, 0.7);
+        text-decoration: none;
+
+        &:hover {
+          color: var(--accent);
+          text-decoration: underline;
+        }
+      }
+    }
+  }
+}

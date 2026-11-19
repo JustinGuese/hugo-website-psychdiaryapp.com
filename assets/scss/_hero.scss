@@ -1,0 +1,491 @@
+// Hero Section Styles - Dusk Journal Theme
+
+#hero.gradient-banner,
+.hero-section {
+  position: relative;
+  overflow: hidden;
+  background-color: var(--ink);
+  background-image:
+    radial-gradient(ellipse 70% 60% at 75% 35%, rgba(59, 58, 143, 0.45) 0%, transparent 70%),
+    radial-gradient(ellipse 50% 50% at 20% 25%, rgba(30, 27, 63, 0.7) 0%, transparent 60%),
+    linear-gradient(180deg, var(--ink) 0%, var(--ink-2) 100%);
+  padding: 110px 0 130px;
+  color: var(--paper);
+
+  @include tablet {
+    padding: 90px 0 100px;
+  }
+
+  @include mobile {
+    padding: 60px 0 70px;
+  }
+
+  // Subtle CSS-only micro-grain texture, no image
+  &::before {
+    content: '';
+    position: absolute;
+    inset: 0;
+    width: 100%;
+    height: 100%;
+    left: 0;
+    top: 0;
+    transform: none;
+    border-radius: 0;
+    z-index: 1;
+    pointer-events: none;
+    background-image: radial-gradient(rgba(255, 255, 255, 0.08) 1px, transparent 1px);
+    background-size: 18px 18px;
+    opacity: 0.35;
+  }
+
+  &::after {
+    display: none;
+  }
+
+  .container {
+    position: relative;
+    z-index: 2;
+  }
+}
+
+// Subtitle Pill
+.hero-subtitle-pill {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  background: rgba(142, 155, 255, 0.12);
+  border: 1px solid rgba(142, 155, 255, 0.25);
+  backdrop-filter: blur(8px);
+  -webkit-backdrop-filter: blur(8px);
+  color: #FAF7F2;
+  font-size: 0.875rem;
+  font-weight: 500;
+  padding: 6px 16px;
+  border-radius: 50px;
+  margin-bottom: 1.25rem;
+
+  i {
+    color: var(--accent);
+  }
+}
+
+// Typography
+.hero-title {
+  font-family: var(--font-serif);
+  font-size: clamp(2.25rem, 5vw, 3.75rem);
+  font-weight: 600;
+  line-height: 1.15;
+  letter-spacing: -0.02em;
+  color: #FAF7F2;
+  margin-bottom: 1.25rem;
+}
+
+.hero-lead {
+  font-family: var(--font-sans);
+  font-size: clamp(1rem, 1.8vw, 1.2rem);
+  line-height: 1.6;
+  color: rgba(250, 247, 242, 0.82);
+  margin-bottom: 1.75rem;
+  max-width: 540px;
+
+  @include mobile {
+    margin-left: auto;
+    margin-right: auto;
+  }
+}
+
+// Trust Badges - quiet glass pills
+.hero-trust-badges {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+  margin-bottom: 1.75rem;
+
+  @include mobile {
+    justify-content: center;
+  }
+
+  .trust-pill {
+    display: inline-flex;
+    align-items: center;
+    gap: 6px;
+    background: rgba(255, 255, 255, 0.06);
+    border: 1px solid rgba(255, 255, 255, 0.12);
+    backdrop-filter: blur(8px);
+    -webkit-backdrop-filter: blur(8px);
+    color: rgba(250, 247, 242, 0.85);
+    font-size: 0.8125rem;
+    font-weight: 500;
+    padding: 6px 14px;
+    border-radius: 50px;
+    transition: background 0.2s ease, border-color 0.2s ease;
+
+    i {
+      color: var(--calm);
+      font-size: 0.8125rem;
+    }
+  }
+}
+
+// CTA Group
+.hero-cta-group {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 16px;
+  margin-bottom: 1.75rem;
+
+  @include mobile {
+    justify-content: center;
+    flex-direction: column;
+    align-items: center;
+    gap: 12px;
+
+    .btn-accent,
+    .app-store-link {
+      width: 100%;
+      max-width: 300px;
+      justify-content: center;
+    }
+  }
+
+  .btn-accent {
+    padding: 14px 32px;
+    font-size: 1.05rem;
+    font-weight: 600;
+  }
+
+  .app-store-img {
+    height: 48px;
+    width: auto;
+    transition: opacity 0.2s ease, transform 0.2s ease;
+
+    &:hover {
+      opacity: 0.9;
+      transform: translateY(-1px);
+    }
+  }
+}
+
+// Hero Stats
+.hero-stats {
+  display: flex;
+  gap: 32px;
+  margin-top: 0.5rem;
+  padding-top: 1.5rem;
+  border-top: 1px solid rgba(255, 255, 255, 0.1);
+
+  @include mobile {
+    justify-content: center;
+    gap: 24px;
+  }
+
+  .hero-stat-item {
+    text-align: left;
+
+    @include mobile {
+      text-align: center;
+    }
+  }
+
+  .stat-value {
+    font-family: var(--font-serif);
+    font-size: 1.85rem;
+    font-weight: 600;
+    line-height: 1.1;
+    color: #FAF7F2;
+  }
+
+  .stat-label {
+    font-family: var(--font-sans);
+    font-size: 0.8125rem;
+    color: rgba(250, 247, 242, 0.6);
+    margin-top: 4px;
+    text-transform: uppercase;
+    letter-spacing: 0.04em;
+  }
+}
+
+// Phones Stage
+.hero-phones-stage {
+  --mx: 0;
+  --my: 0;
+  position: relative;
+  width: 100%;
+  min-height: 520px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin: 0 auto;
+
+  @include tablet {
+    min-height: 440px;
+    margin-top: 1.5rem;
+  }
+
+  @include mobile {
+    min-height: 380px;
+    margin-top: 1.5rem;
+  }
+}
+
+// Slow ambient glow behind phones
+.hero-phone-glow {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  width: 440px;
+  height: 440px;
+  max-width: 110%;
+  border-radius: 50%;
+  background: radial-gradient(circle, rgba(142, 155, 255, 0.28) 0%, rgba(59, 58, 143, 0.15) 50%, transparent 72%);
+  filter: blur(44px);
+  pointer-events: none;
+  z-index: 0;
+  animation: heroSlowGlow 9s ease-in-out infinite alternate;
+
+  @include mobile {
+    width: 280px;
+    height: 280px;
+    filter: blur(32px);
+  }
+}
+
+@keyframes heroSlowGlow {
+  0% {
+    transform: translate(-50%, -50%) scale(0.92);
+    opacity: 0.5;
+  }
+  100% {
+    transform: translate(-50%, -50%) scale(1.08);
+    opacity: 0.85;
+  }
+}
+
+// Clean Phone Bezels
+.clean-phone-bezel {
+  position: relative;
+  background: #1B1833;
+  border: 7px solid #28244D;
+  border-radius: 38px;
+  box-shadow:
+    0 0 0 1px rgba(255, 255, 255, 0.14),
+    0 25px 60px -10px rgba(10, 8, 30, 0.65),
+    0 10px 25px rgba(0, 0, 0, 0.35);
+  overflow: hidden;
+
+  .phone-notch {
+    position: absolute;
+    top: 6px;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 68px;
+    height: 16px;
+    background: #100E21;
+    border-radius: 9px;
+    z-index: 10;
+  }
+
+  .phone-screen {
+    position: relative;
+    border-radius: 31px;
+    overflow: hidden;
+    background: #0E0C1C;
+
+    img,
+    picture img {
+      display: block;
+      width: 100%;
+      height: auto;
+      object-fit: cover;
+      border-radius: 31px;
+    }
+  }
+}
+
+// Overlapping Phones Placement
+.hero-phone-main {
+  position: relative;
+  z-index: 3;
+  width: 270px;
+  max-width: 78%;
+  transform: translate3d(calc(var(--mx) * 14px), calc(var(--my) * 14px), 0);
+  transition: transform 0.15s ease-out;
+
+  .phone-bezel-main {
+    border-width: 8px;
+    border-color: #2F2A59;
+    box-shadow:
+      0 0 0 1px rgba(255, 255, 255, 0.18),
+      0 32px 75px -12px rgba(8, 6, 24, 0.75),
+      0 12px 30px rgba(0, 0, 0, 0.45);
+  }
+
+  @include mobile {
+    width: 230px;
+    max-width: 75vw;
+  }
+}
+
+.hero-phone-side {
+  position: absolute;
+  top: 50%;
+  width: 215px;
+  opacity: 0.82;
+  pointer-events: none;
+  transition: transform 0.15s ease-out, opacity 0.2s ease;
+
+  .clean-phone-bezel {
+    border-width: 5px;
+    border-radius: 32px;
+    box-shadow:
+      0 0 0 1px rgba(255, 255, 255, 0.08),
+      0 20px 45px -10px rgba(10, 8, 30, 0.55);
+
+    .phone-screen {
+      border-radius: 27px;
+
+      img,
+      picture img {
+        border-radius: 27px;
+      }
+    }
+  }
+
+  &.hero-phone-left {
+    left: 4%;
+    z-index: 1;
+    transform: translateY(-50%) rotate(-6deg) scale(0.88) translate3d(calc(var(--mx) * -10px), calc(var(--my) * -10px), 0);
+
+    @include tablet {
+      left: 1%;
+      transform: translateY(-50%) rotate(-5deg) scale(0.82) translate3d(calc(var(--mx) * -8px), calc(var(--my) * -8px), 0);
+    }
+
+    @include mobile {
+      display: none;
+    }
+  }
+
+  &.hero-phone-right {
+    right: 4%;
+    z-index: 2;
+    transform: translateY(-50%) rotate(6deg) scale(0.88) translate3d(calc(var(--mx) * 11px), calc(var(--my) * 11px), 0);
+
+    @include tablet {
+      right: 1%;
+      transform: translateY(-50%) rotate(5deg) scale(0.82) translate3d(calc(var(--mx) * 9px), calc(var(--my) * 9px), 0);
+    }
+
+    @include mobile {
+      display: none;
+    }
+  }
+}
+
+// Floating Glass Insight Chips
+.hero-insight-chip {
+  position: absolute;
+  z-index: 4;
+  pointer-events: none;
+  filter: drop-shadow(0 14px 28px rgba(10, 8, 30, 0.45));
+  transition: transform 0.15s ease-out;
+
+  .insight-chip-inner {
+    display: inline-flex;
+    align-items: center;
+    gap: 10px;
+    background: rgba(30, 27, 63, 0.78);
+    border: 1px solid rgba(255, 255, 255, 0.16);
+    backdrop-filter: blur(14px);
+    -webkit-backdrop-filter: blur(14px);
+    border-radius: 14px;
+    padding: 8px 14px;
+    color: #FAF7F2;
+    white-space: nowrap;
+  }
+
+  .insight-chip-icon {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 28px;
+    height: 28px;
+    border-radius: 8px;
+    background: rgba(142, 155, 255, 0.18);
+    color: var(--accent);
+    font-size: 0.8125rem;
+  }
+
+  .insight-chip-content {
+    display: flex;
+    flex-direction: column;
+    text-align: left;
+  }
+
+  .insight-chip-label {
+    font-size: 0.6875rem;
+    text-transform: uppercase;
+    letter-spacing: 0.05em;
+    color: rgba(250, 247, 242, 0.65);
+    line-height: 1.1;
+  }
+
+  .insight-chip-val {
+    font-size: 0.8125rem;
+    font-weight: 600;
+    color: #FAF7F2;
+    line-height: 1.2;
+  }
+
+  &.hero-insight-chip-1 {
+    top: 14%;
+    left: 4%;
+    transform: translate3d(calc(var(--mx) * -16px), calc(var(--my) * -16px), 0);
+
+    @include tablet {
+      top: 8%;
+      left: 1%;
+    }
+
+    @include mobile {
+      display: none;
+    }
+  }
+
+  &.hero-insight-chip-2 {
+    bottom: 14%;
+    right: 4%;
+    transform: translate3d(calc(var(--mx) * 18px), calc(var(--my) * 18px), 0);
+
+    .insight-chip-icon {
+      background: rgba(245, 185, 122, 0.18);
+      color: var(--calm);
+    }
+
+    @include tablet {
+      bottom: 8%;
+      right: 1%;
+    }
+
+    @include mobile {
+      display: none;
+    }
+  }
+}
+
+// Reduced motion guard
+@media (prefers-reduced-motion: reduce) {
+  .hero-phone-glow {
+    animation: none;
+  }
+
+  .hero-phone-main,
+  .hero-phone-side,
+  .hero-insight-chip {
+    transition: none;
+    --mx: 0;
+    --my: 0;
+  }
+}
